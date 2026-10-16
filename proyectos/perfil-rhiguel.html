@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Rhiguel Sánchez - Software & AI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-rhiguel.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <!-- SIDEBAR / PANEL LATERAL -->
+        <aside class="sidebar">
+            <!-- Botón Volver al Anuario -->
+            <a href="../index.html" class="btn-back">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                <span>Anuario</span>
+            </a>
+
+            <!-- Perfil del usuario -->
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <img src="../image/img3.jpeg" alt="Rhiguel Sánchez">
+                    <span class="status-indicator" title="En línea / Disponible"></span>
+                </div>
+                <h2>Rhiguel Sánchez</h2>
+                <p class="role">Software & AI Developer</p>
+                <p class="location">📍 Huancayo, Junín, Perú</p>
+            </div>
+
+            <!-- Accesos y Redes -->
+            <div class="sidebar-menu">
+                <a href="https://github.com/Cronolice" target="_blank" rel="noopener noreferrer" class="menu-item active">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>GitHub @Cronolice</span>
+                </a>
+            </div>
+
+            <!-- Footer Sidebar -->
+            <div class="sidebar-footer">
+                <span class="badge">SENATI CFP Huancayo</span>
+            </div>
+        </aside>
+
+        <!-- PANEL PRINCIPAL / DASHBOARD -->
+        <main class="main-content">
+            
+            <!-- BARRA DE KPIS / MÉTRICAS -->
+            <section class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-icon">⚡</span>
+                    <div class="kpi-info">
+                        <span class="kpi-value">Full Stack + IA</span>
+                        <span class="kpi-label">Especialización</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon">📦</span>
+                    <div class="kpi-info">
+                        <span class="kpi-value">SaaS / ERP</span>
+                        <span class="kpi-label">Proyectos Clave</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon">🐳</span>
+                    <div class="kpi-info">
+                        <span class="kpi-value">Microservicios</span>
+                        <span class="kpi-label">Arquitectura</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GRILLA DE WIDGETS DE CONTENIDO -->
+            <div class="dashboard-grid">
+
+                <!-- Widget: Perfil Profesional -->
+                <div class="widget widget-full">
+                    <div class="widget-header">
+                        <h3><span>//</span> RESUMEN DEL SISTEMA (PERFIL)</h3>
+                    </div>
+                    <p class="profile-text">
+                        Estudiante de Ingeniería de Software con Inteligencia Artificial enfocado en el desarrollo Full Stack, la creación de sistemas modulares y la integración de arquitecturas escalables. Experiencia directa con Laravel, AdonisJS, Java, Python y despliegue con Docker.
+                    </p>
+                </div>
+
+                <!-- Widget: Experiencia y Proyectos -->
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3><span>//</span> EXPERIENCIA & PROYECTOS</h3>
+                    </div>
+
+                    <div class="project-list">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h4>FactuSmart / Yacros</h4>
+                                <span class="tag-status green">2026</span>
+                            </div>
+                            <span class="project-sub">SaaS Multitenant & Microservicios</span>
+                            <p>Plataforma de facturación electrónica para Mipymes con AdonisJS, Docker y procesamiento de pagos.</p>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h4>Módulo ERP Ventas y CRM</h4>
+                                <span class="tag-status blue">2025 - 2026</span>
+                            </div>
+                            <span class="project-sub">Desarrollo Web Full Stack</span>
+                            <p>Desarrollo transaccional con PHP, Laravel, Tailwind CSS y entornos contenedorizados.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widget: Habilidades Técnicas y Stack -->
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3><span>//</span> STACK TÉCNICO</h3>
+                    </div>
+
+                    <div class="skills-wrapper">
+                        <div class="skill-group">
+                            <span class="group-title">LENGUAJES</span>
+                            <div class="tags-container">
+                                <span class="tag-badge">Java</span>
+                                <span class="tag-badge">Python</span>
+                                <span class="tag-badge">PHP</span>
+                                <span class="tag-badge">SQL</span>
+                                <span class="tag-badge">C++</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <span class="group-title">FRAMEWORKS & HERRAMIENTAS</span>
+                            <div class="tags-container">
+                                <span class="tag-badge highlight">Laravel</span>
+                                <span class="tag-badge highlight">AdonisJS</span>
+                                <span class="tag-badge highlight">Docker</span>
+                                <span class="tag-badge">Godot Engine</span>
+                                <span class="tag-badge">Git & GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widget: Educación -->
+                <div class="widget widget-full">
+                    <div class="widget-header">
+                        <h3><span>//</span> EDUCACIÓN & FORMACIÓN</h3>
+                    </div>
+                    <div class="edu-card">
+                        <div class="edu-info">
+                            <h4>Ingeniería de Software con Inteligencia Artificial</h4>
+                            <p>SENATI CFP Huancayo</p>
+                        </div>
+                        <span class="tag-status cyan">En curso</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
