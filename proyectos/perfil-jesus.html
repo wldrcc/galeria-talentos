@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#050d19">
+
+<title>JS — Ingeniero de Software</title>
+
+<style>
+
+:root{--bg:#050b14;--panel:#081626;--panel2:#0b2035;--blue:#168cff;--cyan:#19c5ff;--text:#edf6ff;--muted:#a7bfd8;--line:rgba(70,163,255,.2);--glow:rgba(0,137,255,.16)}
+
+\*{box-sizing:border-box;scroll-behavior:smooth}
+
+body{margin:0;background:radial-gradient(ellipse at 80% 0%,#0a2340 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65}
+
+a{color:inherit;text-decoration:none}
+
+nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:15px max(6%,calc((100% - 1180px)/2));background:rgba(5,11,20,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+
+.logo{font-size:1.35rem;font-weight:800;letter-spacing:-.06em;color:var(--blue)}.navlinks{display:flex;gap:25px;font-size:.88rem;color:var(--muted)}.navlinks a:hover,.navlinks a.active{color:var(--cyan)}
+
+section{padding:82px max(6%,calc((100% - 1180px)/2));border-bottom:1px solid var(--line);scroll-margin-top:70px}
+
+.hero{min-height:590px;display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center;padding-top:75px;padding-bottom:75px}
+
+.eyebrow{color:#8dcaff;text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:700}
+
+h1{font-size:clamp(2.3rem,4.5vw,4.25rem);line-height:1.1;letter-spacing:-.055em;margin:15px 0 22px}
+
+h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.2;letter-spacing:-.04em;margin:7px 0 18px}
+
+.gradient{background:linear-gradient(100deg,var(--cyan),#4e8cff 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.lead{font-size:1.05rem;color:var(--muted);max-width:570px}
+
+.btn{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--cyan);border-radius:999px;padding:10px 19px;color:var(--cyan);margin-top:14px;transition:.2s}.btn:hover{background:var(--cyan);color:#03101c;transform:translateY(-2px)}
+
+.hero-art{position:relative;min-height:330px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#0d3d69,#071321 65%);box-shadow:0 20px 70px var(--glow);display:flex;align-items:center;justify-content:center}
+
+.orbit{position:absolute;width:290px;height:290px;border:1px solid rgba(25,197,255,.35);border-radius:50%;box-shadow:0 0 60px var(--glow),inset 0 0 60px var(--glow)}
+
+.codecard{position:relative;z-index:1;background:rgba(3,12,23,.91);border:1px solid rgba(91,173,255,.35);border-radius:13px;padding:23px 27px;width:min(82%,360px);font: .88rem/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;box-shadow:0 12px 45px #0007}
+
+.codecard .dots{display:flex;gap:6px;margin-bottom:18px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--blue)}.dots i:nth-child(2){background:var(--cyan)}.codeblue{color:var(--cyan)}.codewhite{color:#e5f2ff}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}
+
+.info-panel{padding:25px 30px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,rgba(10,31,51,.75),rgba(4,13,23,.6))}
+
+.info-row{display:grid;grid-template-columns:35px 1fr;gap:15px;margin:14px 0}.symbol{font-size:1.4rem;color:var(--cyan)}.info-row p{margin:0;color:var(--muted);font-size:.92rem}.info-row strong{color:var(--text);font-weight:600}
+
+.interests{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+
+.card{border:1px solid var(--line);border-radius:13px;padding:22px;background:linear-gradient(145deg,rgba(11,34,56,.85),rgba(5,14,25,.8));transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-5px);border-color:rgba(25,197,255,.7)}
+
+.card-icon{font-size:1.55rem;color:var(--cyan)}.card h3{font-size:1.04rem;margin:9px 0 6px}.card p{color:var(--muted);font-size:.91rem;margin:0}
+
+.strengths{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:30px}.strength{text-align:center;padding:10px 17px;border-right:1px solid var(--line)}.strength:last-child{border:0}.strength .symbol{font-size:1.8rem}.strength h3{font-size:.95rem;margin:8px 0}.strength p{color:var(--muted);font-size:.82rem;margin:0}
+
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:center}.quote{border:1px solid var(--line);border-radius:15px;padding:30px;background:linear-gradient(120deg,#0a2744,#071321);font-size:1.1rem;color:#c8e5ff}.quote small{display:block;color:var(--cyan);margin-top:15px}
+
+footer{display:flex;justify-content:space-between;align-items:center;padding:22px 6%;color:var(--muted);font-size:.82rem}footer a{color:var(--cyan)}#top{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:760px){nav{padding:13px 5%;align-items:flex-start;gap:15px}.navlinks{gap:12px;flex-wrap:wrap;justify-content:flex-end;font-size:.78rem}.hero,.two-col,.contact{grid-template-columns:1fr;gap:30px}.hero{padding-top:60px}.hero-art{min-height:280px}.interests{grid-template-columns:repeat(2,1fr)}.strengths{grid-template-columns:repeat(2,1fr);gap:20px}.strength{border:0;border-bottom:1px solid var(--line);padding-bottom:18px}.strength:last-child{border:0}.contact{gap:20px}section{padding-top:62px;padding-bottom:62px}}
+
+@media(max-width:460px){.interests{grid-template-columns:1fr}.navlinks{gap:9px}.logo{font-size:1.1rem}footer{gap:12px;flex-wrap:wrap}}
+
+@media(prefers-reduced-motion:reduce){\*,\*::before,\*::after{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* Botón flotante destacado que acompaña al visitante durante el scroll */
+.main-float-wrap{
+  position:fixed;right:24px;bottom:24px;z-index:1000;
+  padding:2px;border-radius:999px;isolation:isolate;
+  filter:drop-shadow(0 0 16px rgba(22,140,255,.38));
+  animation:mainFloat 3s ease-in-out infinite;
+}
+.main-float-wrap::before{
+  content:"";position:absolute;inset:-3px;border-radius:inherit;z-index:-2;
+  background:conic-gradient(from 0deg,#19c5ff,#168cff,#d9f4ff,#168cff,#19c5ff);
+  animation:borderSpin 3.2s linear infinite;
+}
+.main-float-wrap::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:2;
+  background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.8) 48%,transparent 65%);
+  transform:translateX(-150%);animation:flashSweep 2.8s ease-in-out infinite;
+  pointer-events:none;
+}
+.main-float-btn{
+  position:relative;display:flex;align-items:center;gap:11px;overflow:hidden;
+  border:1px solid rgba(25,197,255,.75);border-radius:999px;padding:14px 19px;
+  background:linear-gradient(120deg,#050b14,#0b2d50 55%,#071321);
+  color:#edf6ff;font-weight:750;font-size:.92rem;letter-spacing:.015em;
+  white-space:nowrap;box-shadow:inset 0 0 18px rgba(22,140,255,.16);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.main-float-btn:hover{transform:scale(1.045);box-shadow:0 0 28px rgba(25,197,255,.42),inset 0 0 22px rgba(22,140,255,.22)}
+.main-float-btn:focus-visible{outline:3px solid #d9f4ff;outline-offset:5px}
+.main-float-icon{
+  display:grid;place-items:center;width:27px;height:27px;flex:0 0 27px;
+  border-radius:50%;background:linear-gradient(135deg,#19c5ff,#168cff);
+  color:#03101c;font-size:1.15rem
+}
+.main-float-wrap.scroll-highlight{filter:drop-shadow(0 0 22px rgba(25,197,255,.68))}
+@keyframes borderSpin{to{transform:rotate(360deg)}}
+@keyframes flashSweep{0%,15%{transform:translateX(-150%)}55%,100%{transform:translateX(150%)}}
+@keyframes mainFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@media(max-width:520px){.main-float-wrap{right:14px;bottom:14px}.main-float-btn{padding:12px 15px;font-size:.84rem;gap:8px}}
+@media(prefers-reduced-motion:reduce){.main-float-wrap,.main-float-wrap::before,.main-float-wrap::after{animation:none}}
+
+</style>
+
+</head>
+
+<body>
+
+<nav aria-label="Menú principal">
+
+  <a class="logo" href="#inicio" aria-label="Ir al inicio">JS.</a>
+
+  <div class="navlinks">
+
+    <a href="#inicio" class="active">Inicio</a><a href="#sobre-mi">Sobre mí</a><a href="#intereses">Intereses</a><a href="#fortalezas">Fortalezas</a><a href="#contacto">Contacto</a>
+
+  </div>
+
+</nav>
+
+<main>
+
+<section class="hero" id="inicio">
+
+  <div class="reveal">
+
+    <div class="eyebrow">Hola, soy un aprendiz constante</div>
+
+    <h1>Ingeniería de software,<br><span class="gradient">curiosidad sin límites.</span></h1>
+
+    <p class="lead">Me gusta entender cómo funcionan las cosas, convertir ideas en soluciones y crecer un poco cada día. Para mí, programar no es solo escribir código: es observar, preguntar, probar y aprender.</p>
+
+    <a class="btn" href="#sobre-mi">Conóceme mejor <span>↓</span></a>
+
+  </div>
+
+  <div class="hero-art reveal" aria-label="Ilustración abstracta de tecnología">
+
+    <div class="orbit"></div><div class="codecard"><div class="dots"><i></i><i></i><i></i></div>
+
+      <div class="codeblue">// pensar con calma</div><div class="codeblue">// construir con intención</div><br>
+
+      <div class="codewhite">const vida = {</div><div class="codewhite">&nbsp;&nbsp;aprender: true,</div><div class="codewhite">&nbsp;&nbsp;crear: true,</div><div class="codewhite">&nbsp;&nbsp;mejorar: "siempre"</div><div class="codewhite">};</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="sobre-mi">
+
+  <div class="two-col">
+
+    <div class="reveal"><div class="eyebrow">Un poco de mi historia</div><h2>¿Quién <span class="gradient">soy?</span></h2>
+
+      <p class="lead">Soy una persona curiosa, tranquila y orientada a mejorar. Me interesa la tecnología porque combina lógica, creatividad y la posibilidad de ayudar a otras personas.</p>
+
+      <p class="lead">Como futuro ingeniero de software, quiero construir aplicaciones útiles, escribir código claro y entender no solo <em>cómo</em> funciona algo, sino también <em>por qué</em>. Sé que aún tengo mucho por aprender, y justamente eso me motiva.</p>
+
+    </div>
+
+    <div class="info-panel reveal">
+
+      <div class="info-row"><div class="symbol">⌘</div><p><strong>Profesión</strong><br>Ingeniería de software</p></div>
+
+      <div class="info-row"><div class="symbol">⌁</div><p><strong>Mi forma de pensar</strong><br>Analizar, preguntar y encontrar soluciones</p></div>
+
+      <div class="info-row"><div class="symbol">◎</div><p><strong>Mi objetivo</strong><br>Crear tecnología que sea útil y sencilla</p></div>
+
+      <div class="info-row"><div class="symbol">♡</div><p><strong>Mi filosofía</strong><br>Constancia antes que perfección</p></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="intereses">
+
+  <div class="reveal"><div class="eyebrow">Lo que disfruto</div><h2>Mis <span class="gradient">intereses</span></h2><p class="lead">Cada actividad me enseña algo distinto, dentro y fuera de la pantalla.</p></div>
+
+  <div class="interests">
+
+    <article class="card reveal"><div class="card-icon">▤</div><h3>Leer</h3><p>Disfruto descubrir ideas, historias y perspectivas nuevas. Leer me ayuda a pensar mejor y a ampliar mi manera de ver el mundo.</p></article>
+
+    <article class="card reveal"><div class="card-icon">⌘</div><h3>Aprender</h3><p>Me gusta explorar programación, inteligencia artificial y herramientas nuevas. La curiosidad me impulsa a investigar y practicar.</p></article>
+
+    <article class="card reveal"><div class="card-icon">♫</div><h3>Escuchar</h3><p>La música me acompaña al estudiar, caminar o descansar. También valoro escuchar a las personas con atención y sin apresurarme a responder.</p></article>
+
+    <article class="card reveal"><div class="card-icon">◉</div><h3>Observar</h3><p>Me fijo en los detalles y en cómo se relacionan las cosas. Observar antes de actuar ayuda a comprender mejor un problema.</p></article>
+
+    <article class="card reveal"><div class="card-icon">♨</div><h3>Cocinar</h3><p>Me gusta la idea de preparar algo con mis propias manos, probar combinaciones y disfrutar el proceso tanto como el resultado.</p></article>
+
+    <article class="card reveal"><div class="card-icon">↗</div><h3>Fútbol y calistenia</h3><p>El fútbol me recuerda el valor del equipo y la práctica. La calistenia me enseña paciencia, control corporal y progreso paso a paso.</p></article>
+
+  </div>
+
+</section>
+
+<section id="fortalezas">
+
+  <div class="reveal"><div class="eyebrow">Lo que intento aportar</div><h2>Mis <span class="gradient">fortalezas</span></h2><p class="lead">Son cualidades que busco practicar cada día, no etiquetas de perfección.</p></div>
+
+  <div class="strengths">
+
+    <div class="strength reveal"><div class="symbol">⌘</div><h3>Resolver problemas</h3><p>Divido los retos grandes en pasos manejables.</p></div>
+
+    <div class="strength reveal"><div class="symbol">⌕</div><h3>Pensamiento analítico</h3><p>Busco entender las causas antes de elegir una solución.</p></div>
+
+    <div class="strength reveal"><div class="symbol">♧</div><h3>Trabajo en equipo</h3><p>Compartir ideas y escuchar mejora el resultado.</p></div>
+
+    <div class="strength reveal"><div class="symbol">↻</div><h3>Perseverancia</h3><p>Aprendo de los errores y vuelvo a intentarlo.</p></div>
+
+    <div class="strength reveal"><div class="symbol">♡</div><h3>Empatía</h3><p>Intento comprender a las personas y sus necesidades.</p></div>
+
+  </div>
+
+</section>
+
+<section id="contacto">
+
+  <div class="contact">
+
+    <div class="reveal"><div class="eyebrow">La conversación continúa</div><h2><span class="gradient">Hablemos.</span></h2><p class="lead">Siempre hay algo nuevo que aprender o una idea interesante que compartir. Si te interesa la tecnología, el aprendizaje o crear proyectos, podemos conversar.</p><a class="btn" href="mailto:hola@ejemplo.com">Escríbeme ↗</a><p style="font-size:.78rem;color:var(--muted)">Recuerda cambiar este correo por el tuyo.</p></div>
+
+    <div class="quote reveal">“No necesito saberlo todo hoy. Solo necesito mantener la curiosidad, practicar y avanzar con intención.”<small>— Una idea que me acompaña</small></div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer><span>Diseñado con <span class="gradient">♥</span> y ganas de aprender.</span><span>© <span id="year"></span> · Portafolio personal</span><a id="top" href="#inicio" aria-label="Volver arriba">↑</a></footer>
+
+<script>
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Revelar elementos suavemente al entrar en pantalla
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add('visible');
+
+      observer.unobserve(entry.target);
+
+    }
+
+  });
+
+}, {threshold: 0.12});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Marcar la sección actual en el menú
+
+const sections = document.querySelectorAll('main section[id]');
+
+const links = document.querySelectorAll('.navlinks a');
+
+const navObserver = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+
+    }
+
+  });
+
+}, {rootMargin: '-30% 0px -60% 0px'});
+
+sections.forEach(section => navObserver.observe(section));
+
+
+// Dar un brillo sutil al botón cuando el visitante se desplaza.
+const floatingMainButton = document.querySelector('.main-float-wrap');
+let scrollHighlightTimer;
+window.addEventListener('scroll', () => {
+  if (!floatingMainButton) return;
+  floatingMainButton.classList.add('scroll-highlight');
+  clearTimeout(scrollHighlightTimer);
+  scrollHighlightTimer = setTimeout(() => {
+    floatingMainButton.classList.remove('scroll-highlight');
+  }, 500);
+}, { passive: true });
+
+</script>
+
+
+<!-- Botón flotante para volver a la página principal -->
+<div class="main-float-wrap">
+  <a class="main-float-btn" href="/index.html" aria-label="Volver a la página principal">
+    <span class="main-float-icon" aria-hidden="true">↗</span>
+    <span>Volver al Anuario</span>
+  </a>
+</div>
+
+</body>
+
+</html>
