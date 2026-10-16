@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perfil personal y portafolio de Jeanpool Veliz.">
+  <title>Jeanpool Veliz | Mi perfil</title>
+  <style>
+    :root {
+      --fondo: #0f172a;
+      --fondo-claro: #172238;
+      --indigo: #6366f1;
+      --indigo-claro: #a5b4fc;
+      --turquesa: #2dd4bf;
+      --texto: #e2e8f0;
+      --texto-suave: #aebbd0;
+      --panel: #ffffff;
+      --panel-texto: #263247;
+      --panel-suave: #64748b;
+      --borde: #e5eaf1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 5%, rgba(99,102,241,.18), transparent 36%),
+        var(--fondo);
+      color: var(--texto);
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .layout { min-height: 100vh; }
+    .sidebar {
+      position: fixed; inset: 0 auto 0 0; width: 238px;
+      padding: 30px 20px 24px;
+      display: flex; flex-direction: column;
+      background: rgba(9, 15, 31, .94);
+      border-right: 1px solid rgba(148,163,184,.15);
+      z-index: 10;
+    }
+    .marca { display: flex; align-items: center; gap: 12px; margin-bottom: 34px; padding: 0 8px; }
+    .marca-icono {
+      width: 44px; height: 44px; display: grid; place-items: center;
+      border-radius: 13px; color: var(--turquesa);
+      background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.25);
+      font-size: 24px; font-weight: 800;
+    }
+    .marca strong { display: block; font-size: 17px; letter-spacing: .2px; }
+    .marca small { display: block; margin-top: 4px; color: var(--texto-suave); font-size: 10px; letter-spacing: 1.5px; }
+    .nav-titulo { color: #73829c; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 0 12px; margin-bottom: 10px; }
+    .nav { display: grid; gap: 7px; }
+    .nav a {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: #b9c4d7; padding: 12px 13px;
+      border-radius: 11px; font-size: 14px; transition: .2s ease;
+    }
+    .nav a span { width: 20px; text-align: center; font-size: 16px; }
+    .nav a:hover, .nav a.activo { color: white; background: rgba(99,102,241,.25); }
+    .nav a.activo { box-shadow: inset 3px 0 var(--indigo-claro); }
+    .sidebar-pie { margin-top: auto; padding: 18px 10px 0; }
+    .frase { font-size: 12px; line-height: 1.7; color: #9aa9c0; font-style: italic; }
+    .frase b { display: block; color: var(--turquesa); font-style: normal; font-weight: 600; margin-top: 8px; }
+    .estado { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #aebbd0; margin-top: 18px; }
+    .volver {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      margin-top: 22px; padding: 12px 13px; border-radius: 12px;
+      color: #eef2ff; text-decoration: none; font-size: 12px; font-weight: 700;
+      background: linear-gradient(135deg, rgba(99,102,241,.95), rgba(79,70,229,.82));
+      border: 1px solid rgba(165,180,252,.45);
+      box-shadow: 0 7px 18px rgba(79,70,229,.18);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .volver span { font-size: 18px; line-height: 1; }
+    .volver:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(79,70,229,.3); background: linear-gradient(135deg, #7775f4, #5b55e8); }
+    .punto { width: 7px; height: 7px; border-radius: 50%; background: var(--turquesa); box-shadow: 0 0 10px rgba(45,212,191,.6); }
+
+    .contenido { margin-left: 238px; min-width: 0; }
+    .hero {
+      min-height: 315px; padding: 42px clamp(24px, 5vw, 68px);
+      display: flex; align-items: center; gap: 28px; position: relative; overflow: hidden;
+      background:
+        linear-gradient(100deg, rgba(15,23,42,.96), rgba(49,46,129,.82)),
+        radial-gradient(circle at 80% 20%, rgba(45,212,191,.22), transparent 40%);
+      border-bottom: 1px solid rgba(165,180,252,.18);
+    }
+    .hero::after {
+      content: "</>"; position: absolute; right: 7%; bottom: -34px;
+      font-size: clamp(130px, 19vw, 260px); font-weight: 800; letter-spacing: -15px;
+      color: rgba(226,232,240,.045); pointer-events: none;
+    }
+    .foto-marco {
+      flex: 0 0 142px; width: 142px; height: 142px; padding: 5px;
+      border-radius: 50%; border: 2px solid var(--indigo-claro);
+      background: rgba(255,255,255,.08); position: relative; z-index: 1;
+      box-shadow: 0 0 0 8px rgba(99,102,241,.08);
+    }
+    .foto { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; background: #dbeafe; }
+    .hero-texto { position: relative; z-index: 1; max-width: 620px; }
+    .saludo { color: var(--turquesa); font-size: 14px; margin-bottom: 7px; letter-spacing: .4px; }
+    h1 { font-size: clamp(32px, 4vw, 48px); line-height: 1.08; margin-bottom: 10px; letter-spacing: -.8px; }
+    .carrera { color: #d7def0; font-size: 16px; margin-bottom: 12px; }
+    .intro { color: #b9c4d7; line-height: 1.75; font-size: 14px; max-width: 620px; }
+    .chip-estado { display: inline-flex; align-items: center; gap: 8px; margin-top: 17px; padding: 8px 12px; border: 1px solid rgba(45,212,191,.3); border-radius: 30px; color: #c8fff5; background: rgba(45,212,191,.08); font-size: 12px; }
+
+    .panel-principal { background: #f5f7fb; color: var(--panel-texto); padding: 30px clamp(18px, 3vw, 42px) 38px; min-height: calc(100vh - 315px); }
+    .columnas { display: grid; grid-template-columns: minmax(180px, .88fr) minmax(240px, 1.18fr) minmax(240px, 1fr); gap: 24px; align-items: start; }
+    .columna { min-width: 0; display: grid; gap: 25px; }
+    .bloque { scroll-margin-top: 20px; }
+    .titulo-seccion { display: flex; align-items: center; gap: 9px; font-size: 17px; font-weight: 750; margin-bottom: 15px; color: #243047; }
+    .titulo-seccion .icono { color: var(--indigo); font-size: 19px; }
+    .datos { display: grid; gap: 15px; }
+    .dato { display: flex; gap: 11px; align-items: flex-start; font-size: 12px; color: #475569; line-height: 1.55; }
+    .dato-icono { width: 29px; height: 29px; flex: 0 0 29px; display: grid; place-items: center; background: #e8eaff; border-radius: 9px; color: #4f46e5; }
+    .dato strong { display: block; color: #273449; font-size: 12px; margin-bottom: 2px; }
+    .dato small { display: block; color: #748197; font-size: 11px; }
+    .sociales { display: flex; gap: 8px; margin-top: 17px; }
+    .sociales a { width: 33px; height: 33px; display: grid; place-items: center; border: 1px solid #d8deea; border-radius: 50%; text-decoration: none; color: #475569; font-size: 12px; font-weight: 700; transition: .2s; }
+    .sociales a:hover { background: var(--indigo); border-color: var(--indigo); color: white; }
+    .tarjeta-contacto { border-radius: 15px; padding: 19px; color: white; background: linear-gradient(135deg, #4f46e5, #7775e8); box-shadow: 0 9px 22px rgba(79,70,229,.14); }
+    .tarjeta-contacto .simbolo { font-size: 24px; margin-bottom: 10px; }
+    .tarjeta-contacto h3 { font-size: 15px; margin-bottom: 7px; }
+    .tarjeta-contacto p { font-size: 12px; line-height: 1.65; color: #eff0ff; }
+    .tarjeta-contacto a { display: inline-block; margin-top: 13px; text-decoration: none; font-size: 12px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,.55); padding-bottom: 3px; }
+    .texto-sobre { font-size: 12px; color: #64748b; line-height: 1.85; }
+    .texto-sobre + .texto-sobre { margin-top: 9px; }
+    .habilidades { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px 9px; }
+    .habilidad { min-width: 0; display: flex; align-items: center; flex-direction: column; gap: 7px; text-align: center; padding: 11px 4px; border-radius: 12px; background: white; border: 1px solid #e7eaf2; transition: transform .2s, border-color .2s; }
+    .habilidad:hover { transform: translateY(-3px); border-color: #a5b4fc; }
+    .habilidad .logo { font-size: 22px; font-weight: 800; color: #4f46e5; line-height: 1; }
+    .habilidad span:last-child { font-size: 10px; color: #536176; }
+    .nota { margin-top: 14px; font-size: 11px; line-height: 1.65; color: #8490a3; }
+    .intereses { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .interes { padding: 12px 8px; text-align: center; border-radius: 12px; background: white; border: 1px solid #e7eaf2; }
+    .interes .emoji { display: block; font-size: 21px; margin-bottom: 6px; }
+    .interes span:last-child { color: #536176; font-size: 11px; }
+    .proyectos { display: grid; gap: 14px; }
+    .proyecto { background: white; border: 1px solid #e6eaf1; border-radius: 14px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+    .proyecto:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,23,42,.08); }
+    .proyecto-img { width: 100%; height: 116px; display: block; object-fit: cover; background: #dbe3f0; }
+    .proyecto-contenido { padding: 13px 14px 14px; }
+    .proyecto h3 { font-size: 13px; margin-bottom: 6px; color: #29364b; }
+    .proyecto p { font-size: 11px; color: #758196; line-height: 1.6; }
+    .etiquetas { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .etiquetas span { font-size: 9px; color: #4f46e5; background: #eef0ff; padding: 4px 7px; border-radius: 5px; }
+    .objetivo { background: white; border: 1px solid #e7eaf2; padding: 16px; border-radius: 13px; }
+    .objetivo strong { display: block; font-size: 12px; margin-bottom: 7px; color: #374151; }
+    .objetivo p { font-size: 11px; color: #758196; line-height: 1.7; }
+    footer { padding: 19px; text-align: center; background: #eef1f7; color: #8792a5; font-size: 11px; border-top: 1px solid #e3e8f0; }
+
+    @media (max-width: 1180px) {
+      .sidebar { width: 205px; padding-inline: 15px; }
+      .contenido { margin-left: 205px; }
+      .columnas { grid-template-columns: minmax(170px,.8fr) minmax(230px,1.2fr); }
+      .columna-derecha { grid-column: 1 / -1; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: start; }
+      .columna-derecha .bloque-proyectos { grid-row: span 2; }
+      .proyecto-img { height: 140px; }
+    }
+    @media (max-width: 760px) {
+      .sidebar { position: relative; width: 100%; inset: auto; padding: 15px 16px; display: block; }
+      .marca { margin-bottom: 14px; }
+      .nav-titulo { display: none; }
+      .sidebar-pie { display: block; padding: 12px 0 0; }
+      .sidebar-pie .frase, .sidebar-pie .estado { display: none; }
+      .volver { margin-top: 10px; width: fit-content; padding: 9px 13px; }
+      .nav { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 3px; }
+      .nav a { white-space: nowrap; padding: 9px 11px; font-size: 12px; }
+      .nav a span { width: auto; }
+      .contenido { margin-left: 0; }
+      .hero { min-height: 0; padding: 35px 22px; gap: 20px; }
+      .foto-marco { flex-basis: 104px; width: 104px; height: 104px; }
+      .carrera { font-size: 14px; }
+      .intro { font-size: 13px; }
+      .panel-principal { padding: 25px 18px 30px; }
+      .columnas { grid-template-columns: 1fr 1fr; gap: 24px 18px; }
+      .columna-derecha { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+      .columna-derecha .bloque-proyectos { grid-row: auto; }
+    }
+    @media (max-width: 520px) {
+      .hero { flex-direction: column; align-items: flex-start; }
+      .foto-marco { flex-basis: 112px; width: 112px; height: 112px; }
+      .columnas, .columna-derecha { grid-template-columns: 1fr; }
+      .columna-derecha { grid-column: auto; }
+      .habilidades { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .proyecto-img { height: 165px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="marca" href="#inicio" style="text-decoration:none" aria-label="Ir al inicio">
+        <span class="marca-icono">&lt;/&gt;</span>
+        <span><strong>Jeanpool Veliz</strong><small>PORTAFOLIO PERSONAL</small></span>
+      </a>
+      <p class="nav-titulo">MENÚ PRINCIPAL</p>
+      <nav class="nav" aria-label="Navegación principal">
+        <a class="activo" href="#inicio"><span>⌂</span>Inicio</a>
+        <a href="#sobre-mi"><span>◉</span>Sobre mí</a>
+        <a href="#proyectos"><span>▣</span>Proyectos</a>
+        <a href="#habilidades"><span>⚙</span>Habilidades</a>
+        <a href="#contacto"><span>✉</span>Contacto</a>
+      </nav>
+      <div class="sidebar-pie">
+        <p class="frase">“La tecnología no solo se trata de código, sino de crear soluciones para las personas.”<b>— Mi forma de aprender</b></p>
+        <div class="estado"><span class="punto"></span>En constante aprendizaje</div>
+        <a class="volver" href="../index.html"><span aria-hidden="true">←</span> Volver al Anuario</a>
+      </div>
+    </aside>
+
+    <main class="contenido">
+      <header class="hero" id="inicio">
+        <div class="foto-marco">
+          <img
+              class="foto"
+              src="../image/img2.png"
+              alt="Foto de perfil de Jeanpool Veliz"
+          >
+        </div>
+        <div class="hero-texto">
+          <p class="saludo">¡Hola! Soy</p>
+          <h1>Jeanpool Veliz</h1>
+          <p class="carrera">Estudiante de Ingeniería de Software con Inteligencia Artificial</p>
+          <p class="intro">Me interesa la tecnología, el desarrollo web y la creación de soluciones digitales útiles. Estoy construyendo mis habilidades paso a paso, aprendiendo nuevas herramientas y convirtiendo ideas en proyectos.</p>
+          <span class="chip-estado"><span class="punto"></span> Siempre aprendiendo algo nuevo</span>
+        </div>
+      </header>
+
+      <div class="panel-principal">
+        <div class="columnas">
+          <div class="columna columna-izquierda">
+            <section class="bloque" id="contacto">
+              <h2 class="titulo-seccion"><span class="icono">▤</span> Mi información</h2>
+              <div class="datos">
+                <div class="dato"><span class="dato-icono">🎓</span><div><strong>Ingeniería de Software</strong><small>Con Inteligencia Artificial</small></div></div>
+                <div class="dato"><span class="dato-icono">📍</span><div><strong>Perú</strong><small>Ubicación general</small></div></div>
+                <div class="dato"><span class="dato-icono">💻</span><div><strong>Desarrollo web</strong><small>Área de interés</small></div></div>
+                <div class="dato"><span class="dato-icono">🚀</span><div><strong>Aprendizaje continuo</strong><small>Explorando nuevas tecnologías</small></div></div>
+              </div>
+              <div class="sociales" aria-label="Redes sociales">
+                <a href="#contacto" aria-label="GitHub (agrega tu enlace)">GH</a>
+                <a href="#contacto" aria-label="LinkedIn (agrega tu enlace)">in</a>
+                <a href="#contacto" aria-label="Correo">✉</a>
+              </div>
+            </section>
+
+            <section class="tarjeta-contacto">
+              <div class="simbolo">▣</div>
+              <h3>¡Conectemos!</h3>
+              <p>Me interesa conocer personas, compartir ideas y participar en proyectos tecnológicos.</p>
+              <a href="mailto:tu-correo@ejemplo.com">Escríbeme →</a>
+            </section>
+          </div>
+
+          <div class="columna columna-centro">
+            <section class="bloque" id="sobre-mi">
+              <h2 class="titulo-seccion"><span class="icono">◉</span> Sobre mí</h2>
+              <p class="texto-sobre">Soy estudiante de Ingeniería de Software con Inteligencia Artificial. Me interesa comprender cómo se construyen las aplicaciones, desde la estructura visual que utiliza una persona hasta la lógica que permite que un sistema funcione correctamente.</p>
+              <p class="texto-sobre">En mis prácticas he trabajado en interfaces web para presentar información de manera clara y en la edición de fotografías para su uso en páginas institucionales. También he desarrollado ejercicios de aplicaciones móviles y gestión de datos, reforzando poco a poco mis conocimientos.</p>
+              <p class="texto-sobre">Me esfuerzo por escribir código ordenado, cuidar los detalles visuales y crear experiencias sencillas de utilizar. Considero que cada proyecto es una oportunidad para aprender, detectar errores y mejorar.</p>
+            </section>
+
+            <section class="bloque" id="habilidades">
+              <h2 class="titulo-seccion"><span class="icono">⚙</span> Mis habilidades</h2>
+              <div class="habilidades">
+                <div class="habilidad"><span class="logo">5</span><span>HTML</span></div>
+                <div class="habilidad"><span class="logo">3</span><span>CSS</span></div>
+                <div class="habilidad"><span class="logo">JS</span><span>JavaScript</span></div>
+                <div class="habilidad"><span class="logo">Py</span><span>Python</span></div>
+                <div class="habilidad"><span class="logo">⑂</span><span>Git</span></div>
+                <div class="habilidad"><span class="logo">▤</span><span>Bases de datos</span></div>
+              </div>
+              <p class="nota">Estas son tecnologías que estoy aprendiendo y deseo seguir practicando para fortalecer mis competencias.</p>
+            </section>
+
+            <section class="bloque">
+              <h2 class="titulo-seccion"><span class="icono">♡</span> Mis intereses</h2>
+              <div class="intereses">
+                <div class="interes"><span class="emoji">🤖</span><span>Inteligencia artificial</span></div>
+                <div class="interes"><span class="emoji">🎨</span><span>Diseño web</span></div>
+                <div class="interes"><span class="emoji">📷</span><span>Fotografía</span></div>
+                <div class="interes"><span class="emoji">✈️</span><span>Aprender y explorar</span></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="columna columna-derecha">
+            <section class="bloque bloque-proyectos" id="proyectos">
+              <h2 class="titulo-seccion"><span class="icono">&lt;/&gt;</span> Proyectos destacados</h2>
+              <div class="proyectos">
+                <article class="proyecto">
+                  <img class="proyecto-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Espacio de trabajo con herramientas digitales" loading="lazy">
+                  <div class="proyecto-contenido">
+                    <h3>Mi Agenda</h3>
+                    <p>Aplicación móvil académica para registrar, buscar, editar y eliminar contactos. Incluye campos de contacto, validaciones y almacenamiento local para conservar los datos.</p>
+                    <div class="etiquetas"><span>Android Studio</span><span>Java</span><span>CRUD</span><span>JSON</span></div>
+                  </div>
+                </article>
+                <article class="proyecto">
+                  <img class="proyecto-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Panel de datos en una pantalla" loading="lazy">
+                  <div class="proyecto-contenido">
+                    <h3>Portafolio web</h3>
+                    <p>Interfaz web adaptable para organizar información personal, presentar habilidades y mostrar proyectos con una estructura clara, navegación sencilla y recursos visuales.</p>
+                    <div class="etiquetas"><span>HTML</span><span>CSS</span><span>Diseño adaptable</span></div>
+                  </div>
+                </article>
+                <article class="proyecto">
+                  <img class="proyecto-img" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80" alt="Código de programación en una pantalla" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80'">
+                  <div class="proyecto-contenido">
+                    <h3>Gestión de productos</h3>
+                    <p>Aplicación móvil de inventario que permite administrar productos con nombre, precio y stock. Utiliza una base de datos en tiempo real para mantener actualizada la información.</p>
+                    <div class="etiquetas"><span>Android Studio</span><span>Kotlin</span><span>Firebase</span><span>CRUD</span></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="bloque">
+              <h2 class="titulo-seccion"><span class="icono">◎</span> Mi objetivo</h2>
+              <div class="objetivo">
+                <strong>Crecer como desarrollador</strong>
+                <p>Consolidar mis fundamentos de programación, mejorar en desarrollo web y móvil, y aprender a integrar herramientas de inteligencia artificial cuando aporten valor. A mediano plazo, quiero participar en proyectos colaborativos y construir aplicaciones útiles, accesibles y fáciles de mantener.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <footer>© 2026 · Jeanpool Veliz · Anuario Digital · <a href="../index.html" style="color:#5b5bd6;text-decoration:none;font-weight:700;">← Volver al Anuario</a></footer>
+    </main>
+  </div>
+  <script>
+    const enlaces = document.querySelectorAll('.nav a');
+    enlaces.forEach(enlace => {
+      enlace.addEventListener('click', () => {
+        enlaces.forEach(item => item.classList.remove('activo'));
+        enlace.classList.add('activo');
+      });
+    });
+  </script>
+</body>
+</html>
