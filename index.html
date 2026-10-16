@@ -9,11 +9,11 @@
 <body>
     <header>
         <h1>Galería de Talentos</h1>
-        <p>Haz clic en una tarjeta para ver el perfil individual</p>
+        <p>Conoce a las personas, ideas y proyectos de nuestra comunidad.</p>
     </header>
 
-    <div id="container-anuario" class="grid-container">
-        </div>
+    <main id="container-anuario" class="grid-container" aria-label="Perfiles de estudiantes">
+    </main>
 
     <script>
         // CADA ALUMNO AGREGA SU OBJETO A ESTA LISTA
@@ -21,6 +21,7 @@
             { nombre: "Ana García", imagen: "image/img1.jpg", archivo: "perfil-ana.html" },
             { nombre: "Juan Pérez", imagen: "https://i.pravatar.cc/150?u=juan", archivo: "perfil-juan.html" },
             { nombre: "Lucía Torres", imagen: "https://i.pravatar.cc/150?u=lucia", archivo: "perfil-lucia.html" },
+            { nombre: "Daniel Huacho", imagen: "image/huacho.jpeg", archivo: "perfil-huacho.html" }
             { nombre: "Itzel Bartolo", imagen: "image/chango.jpeg", archivo: "perfil.tzl/perfil-itzel.html"},       
             { nombre: "estefany vilchez", imagen: "image/tefaimageimg1.jpg", archivo: "perfil-estefany.html" }
         ];
@@ -29,11 +30,11 @@
 
         alumnos.forEach(alumno => {
             container.innerHTML += `
-                <div class="card" onclick="window.location.href='proyectos/${alumno.archivo}'">
+                <a class="card ${alumno.archivo === 'perfil-huacho.html' ? 'card-huacho' : ''}" href="proyectos/${alumno.archivo}">
                     <img src="${alumno.imagen}" alt="${alumno.nombre}">
                     <h3>${alumno.nombre}</h3>
                     <span>Ver Perfil →</span>
-                </div>
+                </a>
             `;
         });
     </script>
