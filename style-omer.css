@@ -1,0 +1,1119 @@
+
+
+/* =====================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+===================================================== */
+
+:root {
+    --bg-color: #fdf2ff;
+    --bg-secondary: #f8f5ff;
+
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-bg-strong: rgba(255, 255, 255, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.75);
+
+    --accent-1: #acadfa;
+    --accent-2: #a8faef;
+    --accent-3: #e8c8ff;
+
+    --accent-dark: #7774dc;
+    --accent-hover: #6562c7;
+
+    --text-color: #1f3e5a;
+    --text-secondary: #62748a;
+    --heading-color: #243a58;
+
+    --shadow-soft: 0 12px 35px rgba(74, 72, 130, 0.08);
+    --shadow-hover: 0 20px 45px rgba(74, 72, 130, 0.15);
+
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 30px;
+
+    --transition: 0.3s ease;
+}
+
+
+/* Reinicio básico */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--bg-color) 0%,
+            #f7f5ff 48%,
+            #effffb 100%
+        );
+
+    color: var(--text-color);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    line-height: 1.8;
+
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+    background: var(--accent-1);
+    color: #1f3150;
+}
+
+
+/* =====================================================
+   2. FONDO DE AURORAS
+===================================================== */
+
+body::before,
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    filter: blur(110px);
+
+    opacity: 0.45;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+body::before {
+    top: 5%;
+    left: -100px;
+
+    background: var(--accent-1);
+
+    animation: aurora-violet 12s ease-in-out infinite alternate;
+}
+
+body::after {
+    right: -100px;
+    bottom: 5%;
+
+    background: var(--accent-2);
+
+    animation: aurora-turquoise 14s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-violet {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(70px, 50px) scale(1.2);
+    }
+}
+
+@keyframes aurora-turquoise {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(-60px, -40px) scale(1.15);
+    }
+}
+
+
+/* =====================================================
+   3. CONTENEDORES Y SECCIONES
+===================================================== */
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.section-container {
+    padding: 100px 0;
+}
+
+.section-heading {
+    max-width: 750px;
+
+    margin: 0 auto 55px;
+
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin: 0 0 18px;
+
+    color: var(--heading-color);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    font-weight: 700;
+
+    letter-spacing: -1.5px;
+}
+
+.section-heading > p:last-child {
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+
+    max-width: 600px;
+
+    font-size: 0.95rem;
+}
+
+.section-label {
+    margin-bottom: 12px;
+
+    color: var(--accent-dark);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   4. NAVEGACIÓN
+===================================================== */
+
+.site-header {
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    background: rgba(253, 242, 255, 0.76);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.site-header .navbar {
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    color: var(--heading-color) !important;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.8rem;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.navbar-brand span {
+    color: var(--accent-dark);
+}
+
+.navbar-nav {
+    gap: 8px;
+}
+
+.navbar .nav-link {
+    position: relative;
+
+    padding: 10px 14px !important;
+
+    color: var(--text-color);
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    transition: color var(--transition);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--accent-dark);
+}
+
+.navbar .nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    right: 14px;
+    bottom: 4px;
+    left: 14px;
+
+    height: 2px;
+
+    background: var(--accent-dark);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform var(--transition);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link:focus-visible::after {
+    transform: scaleX(1);
+}
+
+.navbar-toggler {
+    border-color: rgba(119, 116, 220, 0.3);
+
+    border-radius: 10px;
+
+    padding: 8px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(119, 116, 220, 0.18);
+}
+
+
+/* =====================================================
+   5. PORTADA PRINCIPAL
+===================================================== */
+
+.hero {
+    display: flex;
+    align-items: center;
+
+    min-height: 650px;
+
+    padding-top: 90px;
+    padding-bottom: 100px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-label {
+    display: inline-block;
+
+    margin-bottom: 22px;
+    padding: 8px 15px;
+
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+
+    background: var(--glass-bg);
+
+    color: var(--accent-dark);
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    max-width: 800px;
+
+    margin: 0 0 20px;
+
+    color: var(--heading-color);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+
+    font-weight: 700;
+
+    line-height: 1.12;
+
+    letter-spacing: -2px;
+
+    overflow-wrap: anywhere;
+}
+
+.hero-subtitle {
+    margin-bottom: 25px;
+
+    color: var(--accent-dark);
+
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+.hero-description {
+    max-width: 620px;
+
+    margin-bottom: 30px;
+
+    color: var(--text-secondary);
+
+    font-size: 1rem;
+
+    line-height: 2;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 14px;
+}
+
+
+/* Botones */
+
+.hero-actions .btn {
+    padding: 13px 24px;
+
+    border-radius: 50px;
+
+    font-family: inherit;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+}
+
+.hero-actions .btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    border-color: var(--accent-dark);
+
+    background: var(--accent-dark);
+
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    border-color: var(--accent-hover);
+
+    background: var(--accent-hover);
+
+    color: #fff;
+
+    box-shadow: 0 10px 25px rgba(119, 116, 220, 0.25);
+}
+
+.btn-outline-primary {
+    border-color: var(--accent-dark);
+
+    color: var(--accent-dark);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    border-color: var(--accent-dark);
+
+    background: var(--accent-dark);
+
+    color: #fff;
+}
+
+
+/* Fotografía */
+
+.hero-image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card {
+    position: relative;
+
+    width: min(100%, 370px);
+
+    margin: 0;
+
+    padding: 12px;
+
+    border: 1px solid var(--glass-border);
+
+    border-radius: var(--radius-lg);
+
+    background: var(--glass-bg);
+
+    box-shadow: var(--shadow-soft);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    transform: rotate(2deg);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.profile-card:hover {
+    transform: rotate(0) translateY(-7px);
+
+    box-shadow: var(--shadow-hover);
+}
+
+.profile-image {
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 22px;
+}
+
+.profile-caption {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 17px 10px 10px;
+
+    text-align: center;
+}
+
+.profile-caption-title {
+    color: var(--heading-color);
+
+    font-weight: 700;
+
+    font-size: 0.95rem;
+}
+
+.profile-caption-text {
+    color: var(--text-secondary);
+
+    font-size: 0.8rem;
+}
+
+
+/* =====================================================
+   6. TARJETAS TRANSLÚCIDAS
+===================================================== */
+
+.about-card,
+.info-card,
+.goal-card,
+.projects-placeholder {
+    border: 1px solid var(--glass-border);
+
+    border-radius: var(--radius-md);
+
+    background: var(--glass-bg);
+
+    box-shadow: var(--shadow-soft);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+.about-card,
+.info-card,
+.goal-card,
+.projects-placeholder {
+    padding: clamp(25px, 4vw, 40px);
+}
+
+.about-card:hover,
+.info-card:hover,
+.goal-card:hover,
+.projects-placeholder:hover {
+    border-color: rgba(172, 173, 250, 0.75);
+
+    box-shadow: var(--shadow-hover);
+
+    transform: translateY(-5px);
+}
+
+.about-card h3,
+.info-card h3,
+.goal-card h3,
+.projects-placeholder h3 {
+    margin: 0 0 18px;
+
+    color: var(--heading-color);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.45rem;
+
+    font-weight: 700;
+}
+
+.about-card p,
+.info-card > p:last-child,
+.goal-card p,
+.projects-placeholder p {
+    color: var(--text-secondary);
+
+    font-size: 0.93rem;
+
+    line-height: 2;
+}
+
+.about-card p:last-child,
+.projects-placeholder p:last-child {
+    margin-bottom: 0;
+}
+
+.about-card strong {
+    color: var(--accent-dark);
+}
+
+
+/* =====================================================
+   7. FORMACIÓN ACADÉMICA
+===================================================== */
+
+.education {
+    position: relative;
+}
+
+.info-card {
+    position: relative;
+
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.card-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 28px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(172, 173, 250, 0.4),
+        rgba(168, 250, 239, 0.5)
+    );
+
+    color: var(--accent-dark);
+
+    font-weight: 700;
+
+    font-size: 1rem;
+}
+
+.card-category {
+    margin-bottom: 10px;
+
+    color: var(--accent-dark);
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.info-card h3 {
+    font-size: 1.5rem;
+}
+
+.info-card .card-date {
+    margin-bottom: 18px;
+
+    color: var(--heading-color);
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   8. METAS PERSONALES
+===================================================== */
+
+.goal-card {
+    height: 100%;
+}
+
+.goal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid rgba(172, 173, 250, 0.35);
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(172, 173, 250, 0.3),
+        rgba(168, 250, 239, 0.35)
+    );
+
+    color: var(--accent-dark);
+
+    font-size: 1rem;
+
+    font-weight: 700;
+}
+
+.goal-card h3 {
+    font-size: 1.25rem;
+}
+
+
+/* Frase personal */
+
+.personal-motto {
+    position: relative;
+
+    max-width: 850px;
+
+    margin: 60px auto 0;
+
+    padding: 35px 25px;
+
+    border-left: 4px solid var(--accent-dark);
+
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+    background: linear-gradient(
+        110deg,
+        rgba(172, 173, 250, 0.16),
+        rgba(168, 250, 239, 0.18)
+    );
+
+    text-align: center;
+}
+
+.personal-motto p {
+    margin: 0;
+
+    color: var(--heading-color);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+
+    font-style: italic;
+
+    font-weight: 700;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   9. PROYECTOS
+===================================================== */
+
+.projects-placeholder {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.projects-placeholder h3 {
+    font-size: 1.7rem;
+}
+
+.projects-placeholder p {
+    max-width: 650px;
+
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* =====================================================
+   10. CIERRE
+===================================================== */
+
+.closing {
+    position: relative;
+
+    padding-top: 70px;
+    padding-bottom: 80px;
+
+    text-align: center;
+}
+
+.closing-label {
+    margin-bottom: 15px;
+
+    color: var(--accent-dark);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+}
+
+.closing h2 {
+    margin-bottom: 20px;
+
+    color: var(--heading-color);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(1.8rem, 4vw, 3rem);
+
+    font-weight: 700;
+}
+
+.closing > .container > p:last-child {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+
+    font-size: 0.95rem;
+}
+
+
+/* =====================================================
+   11. PIE DE PÁGINA
+===================================================== */
+
+.site-footer {
+    padding: 40px 0 25px;
+
+    border-top: 1px solid rgba(119, 116, 220, 0.12);
+
+    background: rgba(255, 255, 255, 0.3);
+
+    text-align: center;
+}
+
+.footer-name {
+    margin-bottom: 5px;
+
+    color: var(--heading-color);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.15rem;
+
+    font-weight: 700;
+}
+
+.footer-description {
+    margin-bottom: 20px;
+
+    color: var(--text-secondary);
+
+    font-size: 0.82rem;
+}
+
+.footer-copyright {
+    margin-bottom: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 0.72rem;
+}
+
+
+/* =====================================================
+   12. ACCESIBILIDAD Y MOVIMIENTO
+===================================================== */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--accent-dark);
+
+    outline-offset: 4px;
+}
+
+/* @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+} */
+
+.btn-volver {
+    display: inline-block;
+    padding: 12px 24px;
+
+    background: var(--accent-dark);
+    color: #fff;
+
+    border: 1px solid transparent;
+    border-radius: 50px;
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+    background: var(--accent-hover);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(119, 116, 220, 0.25);
+}
+
+.btn-volver:focus-visible {
+    outline: 3px solid var(--accent-dark);
+    outline-offset: 4px;
+}
+
+/* =====================================================
+   13. TABLETAS
+===================================================== */
+
+/* @media (max-width: 991.98px) {
+
+    .section-container {
+        padding: 75px 0;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding-top: 70px;
+        padding-bottom: 80px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero-image-container {
+        margin-top: 10px;
+    }
+
+    .profile-card {
+        width: min(100%, 330px);
+    }
+
+    .section-heading {
+        margin-bottom: 40px;
+    }
+
+    .navbar-collapse {
+        padding-top: 15px;
+    }
+
+    .navbar-nav {
+        gap: 3px;
+    }
+
+    .navbar .nav-link {
+        padding: 10px 12px !important;
+    }
+
+    .navbar .nav-link::after {
+        display: none;
+    }
+} */
+
+
+/* =====================================================
+   14. CELULARES
+===================================================== */
+
+/* @media (max-width: 575.98px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .section-container {
+        padding: 60px 0;
+    }
+
+    .hero {
+        padding-top: 55px;
+        padding-bottom: 65px;
+    }
+
+    .hero-label {
+        font-size: 0.62rem;
+
+        letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.1rem, 10vw, 3rem);
+
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem;
+
+        letter-spacing: 2px;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+
+        line-height: 1.9;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .profile-card {
+        width: min(100%, 290px);
+
+        transform: none;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .section-heading {
+        margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+        font-size: 2rem;
+
+        letter-spacing: -0.8px;
+    }
+
+    .section-label {
+        font-size: 0.65rem;
+
+        letter-spacing: 2px;
+    }
+
+    .about-card,
+    .info-card,
+    .goal-card,
+    .projects-placeholder {
+        padding: 25px 22px;
+    }
+
+    .about-card h3,
+    .info-card h3,
+    .goal-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .about-card p,
+    .info-card > p:last-child,
+    .goal-card p,
+    .projects-placeholder p {
+        font-size: 0.85rem;
+    }
+
+    .personal-motto {
+        margin-top: 40px;
+
+        padding: 25px 18px;
+    }
+
+    .personal-motto p {
+        font-size: 1.1rem;
+    }
+
+    .closing h2 {
+        font-size: 1.9rem;
+    }
+
+    .footer-copyright {
+        line-height: 1.8;
+    }
+
+    body::before,
+    body::after {
+        width: 220px;
+        height: 220px;
+
+        filter: blur(85px);
+    }
+} */
