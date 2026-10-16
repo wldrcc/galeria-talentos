@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Tony Frank</title>
+
+    <link rel="stylesheet" href="perfil-tonyparian.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- MENÚ LATERAL -->
+    <aside class="sidebar">
+
+        <h2 class="logo">TONY</h2>
+
+        <nav>
+            <button class="menu-btn activo"
+                    onclick="mostrarSeccion('inicio', this)">
+                Inicio
+            </button>
+
+            <button class="menu-btn"
+                    onclick="mostrarSeccion('perfil', this)">
+                Mi perfil
+            </button>
+
+            <button class="menu-btn"
+                    onclick="mostrarSeccion('proyectos', this)">
+                Proyectos
+            </button>
+
+            <button class="menu-btn"
+                    onclick="mostrarSeccion('intereses', this)">
+                Intereses
+            </button>
+        </nav>
+
+        <a href="../index.html" class="btn-volver">
+            Volver al Anuario
+        </a>
+
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido">
+
+        <header class="encabezado">
+            <div>
+                <span class="subtitulo">ESPACIO PERSONAL</span>
+                <h1 id="titulo-seccion">Mi Dashboard</h1>
+            </div>
+
+            <div class="avatar">TF</div>
+        </header>
+
+        <!-- INICIO -->
+        <section id="inicio" class="seccion activa">
+
+            <div class="bienvenida tarjeta">
+                <span class="subtitulo">
+                    BIENVENIDO A MI ESPACIO
+                </span>
+
+                <h2>Tony Frank Parian Camarena</h2>
+
+                <p>
+                    
+                </p>
+            </div>
+
+            <div class="estadisticas">
+
+                <div class="tarjeta">
+                    <p>Intereses</p>
+                    <h2>2</h2>
+                </div>
+
+                <div class="tarjeta">
+                    <p>Proyectos</p>
+                    <h2>—</h2>
+                </div>
+
+                <div class="tarjeta">
+                    <p>Perfil</p>
+                    <h3>Personal</h3>
+                </div>
+
+            </div>
+
+            <h2 class="titulo-bloque">Mis intereses</h2>
+
+            <div class="cuadricula">
+
+                <div class="tarjeta">
+                    <h3>Escuchar Musica</h3>
+                    <p>Rock de los 90 y 80</p>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Tecnología</h3>
+                    <p>Cultura digital</p>
+                </div>
+
+            </div>
+
+            <h2 class="titulo-bloque">Mis proyectos</h2>
+
+            <div class="tarjeta">
+                <p>
+                    <link rel="stylesheet" href="https://github.com/punky3211">
+                </p>
+            </div>
+
+        </section>
+
+        <!-- MI PERFIL -->
+        <section id="perfil" class="seccion">
+
+            <div class="tarjeta perfil-card">
+
+                <div class="avatar grande">TF</div>
+
+                <h2>Tony Frank Parian Camarena</h2>
+
+                
+
+                <span class="etiqueta">Perfil personal</span>
+
+            </div>
+
+        </section>
+
+        <!-- PROYECTOS -->
+        <section id="proyectos" class="seccion">
+
+            <h2 class="titulo-bloque">
+                Portafolio de proyectos
+            </h2>
+
+            <div class="tarjeta perfil-card">
+
+             <h3>Mis proyectos</h3>
+
+               <a href="https://github.com/punky3211" target="_blank" rel="noopener noreferrer" class="btn-link">
+               Visitar página web
+               </a>
+            </div>
+
+        </section>
+
+        <!-- INTERESES -->
+        <section id="intereses" class="seccion">
+
+            <h2 class="titulo-bloque">Mis intereses</h2>
+
+            <div class="cuadricula">
+
+                <div class="tarjeta">
+                    <h3>Musica</h3>
+                    <p>
+                        Rock en español e ingles
+                    </p>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Tecnología</h3>
+                    <p>
+                        Innovación y cultura tecnológica.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="perfin-tonyparian.js"></script>
+
+</body>
+</html>
+
