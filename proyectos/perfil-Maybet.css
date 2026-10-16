@@ -1,0 +1,645 @@
+/* ==========================================================================
+   PERFIL DE MAYBET · ANUARIO DIGITAL 2026
+   Estructura:
+      1. Variables (design tokens)
+      2. Reset y base
+      3. Utilidades y layout (con espacios más amplios)
+      4. Encabezado
+      5. Hero
+      6. Tarjetas (con padding mejorado)
+      7. Datos académicos
+      8. Intereses
+      9. Botones y CTA
+     10. Pie de página
+     11. Animaciones
+     12. Responsive
+     13. Preferencias del usuario (movimiento reducido, impresión)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+    /* Colores de marca */
+    --brand-600: #14e025c7;
+    --brand-700: #4338ca;
+    --brand-800: #352ada;
+    --accent-500: #0fdbff;
+    --accent-400: #22d3ee;
+    --pink-500: #f3077d;
+
+    /* Superficies y texto (modo claro) */
+    --bg: #f5f6fb;
+    --surface: #ffffff;
+    --surface-2: #eef0fb;
+    --text: #1e1b3a;
+    --text-muted: #5f6480;
+    --border: #e3e6f3;
+
+    /* Forma y sombras */
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+    --shadow-sm: 0 2px 8px rgba(122, 113, 204, 0.06);
+    --shadow-md: 0 12px 32px rgba(30, 27, 58, 0.10);
+    --shadow-lg: 0 24px 60px rgba(11, 46, 247, 0.384);
+
+    /* Tipografía */
+    --font-base: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+    /* Espaciado */
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+    --space-6: 4rem;
+
+    --container: 1000px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modo oscuro automático según el sistema */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f1020;
+        --surface: #171933;
+        --surface-2: #1f2245;
+        --text: #eceefe;
+        --text-muted: #a3a8cc;
+        --border: #2a2e57;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+        --shadow-md: 0 12px 32px rgba(38, 216, 186, 0.562);
+    }
+}
+
+
+/* ==========================================================================
+   2. RESET Y BASE
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-base);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p, dl, dd, ul, figure {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent-500);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+
+/* ==========================================================================
+   3. UTILIDADES Y LAYOUT (Mayor separación y respiro)
+   ========================================================================== */
+.container {
+    width: min(100% - 2.5rem, var(--container));
+    margin-inline: auto;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    color: #fff;
+    background: var(--brand-700);
+    border-radius: var(--radius-sm);
+    transition: top var(--transition);
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4); /* Aumentado de space-3 a space-4 para separar tarjetas */
+    padding-block: var(--space-6) var(--space-4);
+}
+
+.card--wide {
+    grid-column: 1 / -1;
+}
+
+
+/* ==========================================================================
+   4. ENCABEZADO
+   ========================================================================== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+}
+
+.site-header__brand {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.site-header__year {
+    margin-left: 0.25rem;
+    padding: 0.15rem 0.55rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--brand-600), var(--accent-500));
+    border-radius: 999px;
+}
+
+.link-back {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--brand-600);
+    transition: color var(--transition), transform var(--transition);
+}
+
+.link-back:hover {
+    color: var(--accent-500);
+    transform: translateX(-3px);
+}
+
+@media (prefers-color-scheme: dark) {
+    .link-back {
+        color: var(--accent-400);
+    }
+}
+
+
+/* ==========================================================================
+   5. HERO
+   ========================================================================== */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-6) calc(var(--space-6) + 2rem);
+    color: #fff;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.45), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(236, 72, 153, 0.40), transparent 45%),
+        linear-gradient(135deg, var(--brand-800), var(--brand-600));
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, #000, transparent 85%);
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+    pointer-events: none;
+}
+
+.hero__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+}
+
+.avatar {
+    flex-shrink: 0;
+    padding: 6px;
+    background: conic-gradient(from 180deg, var(--accent-400), var(--pink-500), #fff, var(--accent-400));
+    border-radius: 50%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.avatar__img {
+    width: clamp(160px, 24vw, 240px);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 6px solid var(--brand-700);
+    border-radius: 50%;
+    background: var(--surface-2);
+}
+
+.badge {
+    display: inline-block;
+    margin-bottom: var(--space-2);
+    padding: 0.35rem 1.1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+}
+
+.hero__title {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.hero__name {
+    background: linear-gradient(90deg, var(--accent-400), #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero__role {
+    margin-top: var(--space-1);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    opacity: 0.92;
+}
+
+.hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: var(--space-3);
+}
+
+.hero__meta li {
+    padding: 0.45rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+}
+
+
+/* ==========================================================================
+   6. TARJETAS (Mayor espacio interno / padding)
+   ========================================================================== */
+.card {
+    padding: var(--space-5); /* Espacio interno más amplio para que no se vea junto */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: var(--space-3); /* Separación clara entre el título y el contenido */
+}
+
+.card__icon {
+    display: grid;
+    place-items: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.25rem;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+}
+
+.card__title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.card__text {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.card__text + .card__text {
+    margin-top: 1rem; /* Separa los párrafos entre sí */
+}
+
+
+/* ==========================================================================
+   7. DATOS ACADÉMICOS
+   ========================================================================== */
+.info-list {
+    display: grid;
+    gap: 1rem; /* Más espacio entre cada fila de datos */
+}
+
+.info-list__row {
+    padding: 1rem 1.25rem;
+    background: var(--surface-2);
+    border-left: 4px solid var(--brand-600);
+    border-radius: var(--radius-sm);
+}
+
+.info-list dt {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.info-list dd {
+    font-weight: 600;
+    margin-top: 0.2rem;
+}
+
+
+/* ==========================================================================
+   8. INTERESES
+   ========================================================================== */
+.interests {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-3); /* Mayor separación en la grilla de intereses */
+}
+
+.interest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.6rem 1.2rem;
+    text-align: center;
+    background: var(--surface-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.interest:hover {
+    transform: translateY(-5px);
+    border-color: var(--brand-600);
+    background: var(--surface);
+}
+
+.interest__icon {
+    font-size: 2.2rem;
+    transition: transform var(--transition);
+}
+
+.interest:hover .interest__icon {
+    transform: scale(1.2) rotate(-6deg);
+}
+
+.interest__label {
+    font-weight: 700;
+}
+
+.interest__desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   9. HIGHLIGHTS & TIMELINE (Espacios internos)
+   ========================================================================== */
+.highlights {
+    display: grid;
+    gap: 1rem;
+    margin-top: var(--space-3);
+}
+
+.highlight {
+    padding: 1rem 1.2rem;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+}
+
+.highlight strong {
+    display: block;
+    color: var(--brand-600);
+    margin-bottom: 0.2rem;
+}
+
+.timeline {
+    display: grid;
+    gap: 1rem;
+}
+
+.timeline__item {
+    padding: 1rem 1.2rem;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+}
+
+.timeline__item strong {
+    display: block;
+    color: var(--brand-600);
+    margin-bottom: 0.2rem;
+}
+
+
+/* ==========================================================================
+   10. CONTACTO
+   ========================================================================== */
+.contact {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.contact__link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.95rem 1.2rem;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.contact__link:hover {
+    background: var(--brand-600);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+
+/* ==========================================================================
+   11. BOTONES Y CTA
+   ========================================================================== */
+.cta {
+    padding-block: var(--space-4) var(--space-6);
+    text-align: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2.4rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--brand-600), var(--accent-500));
+    border-radius: 999px;
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.35);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(79, 70, 229, 0.45);
+}
+
+
+/* ==========================================================================
+   12. PIE DE PÁGINA
+   ========================================================================== */
+.site-footer {
+    padding-block: var(--space-4);
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--text-muted);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+
+/* ==========================================================================
+   13. ANIMACIONES
+   ========================================================================== */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero__inner > *,
+.card,
+.cta {
+    animation: fade-up 0.7s ease both;
+}
+
+.hero__content             { animation-delay: 0.1s; }
+.layout .card:nth-child(1) { animation-delay: 0.2s; }
+.layout .card:nth-child(2) { animation-delay: 0.3s; }
+.layout .card:nth-child(3) { animation-delay: 0.4s; }
+.cta                       { animation-delay: 0.5s; }
+
+
+/* ==========================================================================
+   14. RESPONSIVE Y PREFERENCIAS
+   ========================================================================== */
+@media (max-width: 760px) {
+    .hero__inner {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-4);
+    }
+
+    .hero__meta {
+        justify-content: center;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: var(--space-4);
+    }
+
+    .site-header__brand {
+        display: none;
+    }
+
+    .site-header__inner {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media print {
+    .site-header,
+    .cta,
+    .skip-link {
+        display: none;
+    }
+
+    body {
+        background: #fff;
+        color: #000;
+    }
+
+    .hero {
+        color: #000;
+        background: none;
+        box-shadow: none;
+    }
+
+    .card {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+}
