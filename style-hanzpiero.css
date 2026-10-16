@@ -1,0 +1,509 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
+    line-height: 1.6;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar {
+    background-color: white;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #2e7d32;
+}
+
+.nav-enlaces {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-enlaces a:hover {
+    color: #2e7d32;
+}
+
+.btn-volver {
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.hero {
+    padding: 80px 0;
+    background-color: #f3faf3;
+}
+
+.hero-contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.etiqueta {
+    color: #2e7d32;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.saludo {
+    margin-top: 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 10px 0;
+}
+
+.hero h1 span,
+.texto-azul {
+    color: #2e7d32;
+}
+
+.hero h2 {
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.hero-descripcion {
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.hero-botones {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-primario {
+    display: inline-block;
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+
+.btn-secundario {
+    display: inline-block;
+    border: 1px solid #2e7d32;
+    color: #2e7d32;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+
+.hero-datos {
+    display: flex;
+    gap: 35px;
+    margin-top: 35px;
+}
+
+.hero-datos div {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-datos strong {
+    font-size: 20px;
+    color: #2e7d32;
+}
+
+.hero-datos span {
+    font-size: 13px;
+    color: #666;
+}
+
+.hero-tarjeta {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ventana-superior {
+    background-color: #e8f5e9;
+    padding: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.puntos {
+    display: flex;
+    gap: 5px;
+}
+
+.puntos span {
+    width: 10px;
+    height: 10px;
+    background-color: #81c784;
+    border-radius: 50%;
+}
+
+.codigo-perfil {
+    padding: 20px;
+    font-family: monospace;
+    font-size: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.sangria {
+    margin-left: 20px;
+}
+
+.sangria-doble {
+    margin-left: 40px;
+}
+
+.morado,
+.celeste {
+    color: #2e7d32;
+}
+
+.verde {
+    color: #388e3c;
+}
+
+.naranja {
+    color: #e65100;
+}
+
+.linea-final {
+    margin-top: 15px;
+}
+
+.tarjeta-estado {
+    padding: 12px;
+    background-color: #e8f5e9;
+    font-size: 13px;
+}
+
+.punto-verde {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background-color: green;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.seccion {
+    padding: 65px 0;
+}
+
+.fondo-alterno {
+    background-color: #f3faf3;
+}
+
+.encabezado-seccion {
+    margin-bottom: 35px;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.subtitulo {
+    color: #2e7d32;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.encabezado-seccion h2 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.encabezado-seccion h2 span {
+    color: #2e7d32;
+}
+
+.encabezado-seccion p {
+    color: #666;
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+.sobre-texto h3 {
+    margin-bottom: 15px;
+}
+
+.sobre-texto p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.sobre-tarjetas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.mini-card,
+.skill-card,
+.proyecto-card,
+.hobby-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.mini-icono,
+.skill-icono,
+.hobby-icono {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.mini-card h4,
+.skill-card h3,
+.hobby-card h3 {
+    margin-bottom: 10px;
+}
+
+.mini-card p,
+.skill-card p,
+.hobby-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+.grid-habilidades,
+.grid-hobbies {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.tecnologias span {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.grid-proyectos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.proyecto-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.proyecto-imagen {
+    background-color: #dcedc8;
+    text-align: center;
+    padding: 25px;
+    font-size: 40px;
+}
+
+.proyecto-contenido {
+    padding: 20px;
+}
+
+.tipo-proyecto {
+    color: #2e7d32;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.proyecto-contenido h3 {
+    margin: 10px 0;
+}
+
+.proyecto-contenido p {
+    font-size: 14px;
+    color: #555;
+}
+
+.hobby-card {
+    text-align: center;
+}
+
+.cierre {
+    text-align: center;
+    background-color: #e8f5e9;
+}
+
+.cierre h2 {
+    font-size: 32px;
+    margin: 15px 0;
+}
+
+.cierre h2 span {
+    color: #2e7d32;
+}
+
+.cierre p {
+    margin-bottom: 25px;
+}
+
+.footer {
+    background-color: #2e7d32;
+    color: white;
+    padding: 20px 0;
+}
+
+.footer-contenido {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+@media (max-width: 800px) {
+    .nav-contenido {
+        flex-direction: column;
+    }
+
+    .nav-enlaces {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-contenido,
+    .sobre-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-proyectos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .grid-habilidades,
+    .grid-hobbies,
+    .grid-proyectos,
+    .sobre-tarjetas {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-contenido {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.hero-foto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-foto img {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid #2e7d32;
+}
+
+@media (max-width: 800px) {
+    .hero-foto img {
+        width: 250px;
+        height: 300px;
+    }
+}
+
+.grid-contacto {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.contacto-card {
+    background-color: #f3faf3;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+}
+
+.contacto-card h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.contacto-card p {
+    color: #555;
+    margin-bottom: 20px;
+    overflow-wrap: anywhere;
+}
+
+.contacto-card a {
+    display: inline-block;
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.contacto-card a:hover {
+    background-color: #1b5e20;
+}
+
+@media (max-width: 800px) {
+    .grid-contacto {
+        grid-template-columns: 1fr;
+    }
+}
