@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Profesional - Estefany Vilchez Gutierrez</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-dark: #120710;
+      --bg-sidebar: #1e0a1b;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(244, 114, 182, 0.18);
+      --pink-primary: #ec4899;
+      --pink-light: #f472b6;
+      --pink-soft: #fbcfe8;
+      --text-main: #ffffff;
+      --text-sub: #f1f5f9;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--pink-soft);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      display: flex;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* BARRA LATERAL (SIDEBAR) */
+    .sidebar {
+      width: 280px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--card-border);
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: fixed;
+      height: 100vh;
+      z-index: 100;
+    }
+
+    .profile-card {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .profile-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 24px;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 3px solid var(--pink-primary);
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35);
+    }
+
+    .profile-card h2 {
+      font-size: 1.2rem;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .profile-card p {
+      font-size: 0.82rem;
+      color: var(--pink-light);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* MENU DE NAVEGACIÓN */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-item {
+      color: var(--pink-soft);
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      background: rgba(236, 72, 153, 0.2);
+      color: var(--text-main);
+    }
+
+    .nav-item i {
+      color: var(--pink-primary);
+      width: 20px;
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--pink-primary);
+      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-back:hover {
+      background: #db2777;
+      transform: translateY(-2px);
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 40px;
+      max-width: 1150px;
+    }
+
+    /* ESTADÍSTICAS RÁPIDAS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin-bottom: 35px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--pink-primary);
+    }
+
+    .stat-card h3 {
+      font-size: 1.8rem;
+      color: var(--pink-primary);
+      font-weight: 800;
+    }
+
+    .stat-card p {
+      font-size: 0.82rem;
+      color: var(--pink-soft);
+      margin-top: 4px;
+    }
+
+    /* ESTILO DE SECCIONES */
+    .section {
+      margin-bottom: 45px;
+      display: none; /* Se activa dinámicamente o se ven todas en scroll */
+    }
+
+    .section.active-section {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      color: var(--text-main);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+
+    .section-title i {
+      color: var(--pink-primary);
+    }
+
+    /* CAJAS Y TARJETAS GENERICAS */
+    .card-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 20px;
+    }
+
+    /* SOBRE MÍ DOS COLUMNAS */
+    .grid-two-cols {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 22px;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 0.9rem;
+    }
+
+    .info-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .info-list i {
+      color: var(--pink-primary);
+      font-size: 1.1rem;
+    }
+
+    /* BARRAS DE HABILIDAD */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-bar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .skill-progress-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink-primary), var(--pink-light));
+      border-radius: 10px;
+    }
+
+    /* TARJETAS DE PROYECTOS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pink-primary);
+    }
+
+    .project-banner {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .project-body {
+      padding: 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-body h4 {
+      color: var(--text-main);
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .project-body p {
+      font-size: 0.88rem;
+      color: var(--pink-soft);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      background: rgba(236, 72, 153, 0.18);
+      color: var(--pink-light);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-project {
+      font-size: 0.82rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-project-primary {
+      background: rgba(236, 72, 153, 0.2);
+      color: var(--pink-light);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+    }
+
+    .btn-project-primary:hover {
+      background: var(--pink-primary);
+      color: #ffffff;
+    }
+
+    /* TIMELINE DE EXPERIENCIA Y EDUCACIÓN */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .timeline-item {
+      border-left: 3px solid var(--pink-primary);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--pink-primary);
+      border-radius: 50%;
+      position: absolute;
+      left: -7.5px;
+      top: 4px;
+    }
+
+    .timeline-item h4 {
+      color: var(--text-main);
+      font-size: 1.05rem;
+    }
+
+    .timeline-item span {
+      font-size: 0.82rem;
+      color: var(--pink-light);
+      font-weight: 600;
+    }
+
+    .timeline-item p {
+      font-size: 0.88rem;
+      margin-top: 6px;
+      color: var(--pink-soft);
+    }
+
+    /* TARJETAS DE INTERESES */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .interest-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px 15px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--pink-primary);
+    }
+
+    .interest-card i {
+      font-size: 1.8rem;
+      color: var(--pink-primary);
+      margin-bottom: 8px;
+    }
+
+    .interest-card span {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* FORMULARIO DE CONTACTO */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: var(--pink-light);
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--pink-primary);
+    }
+
+    .btn-send {
+      width: 100%;
+      padding: 12px;
+      background: var(--pink-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-send:hover {
+      background: #db2777;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--pink-soft);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--pink-primary);
+      color: #ffffff;
+      border-color: var(--pink-primary);
+      transform: translateY(-3px);
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--card-border);
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+      .grid-two-cols, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA LATERAL (SIDEBAR) -->
+  <aside class="sidebar">
+    <div>
+      <div class="profile-card">
+        <img src="../image/tefaimageimg1.jpg" alt="Estefany Vilchez" class="profile-avatar">
+        <h2>Estefany Vilchez</h2>
+        <p>Desarrolladora Web & Estudiante</p>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item active" onclick="showTab('inicio', this)"><i class="fas fa-home"></i> Inicio / Resumen</li>
+          <li class="nav-item" onclick="showTab('sobre-mi', this)"><i class="fas fa-user-circle"></i> Sobre mí</li>
+          <li class="nav-item" onclick="showTab('habilidades', this)"><i class="fas fa-code"></i> Habilidades</li>
+          <li class="nav-item" onclick="showTab('proyectos', this)"><i class="fas fa-folder-open"></i> Proyectos</li>
+          <li class="nav-item" onclick="showTab('experiencia', this)"><i class="fas fa-graduation-cap"></i> Educación</li>
+          <li class="nav-item" onclick="showTab('intereses', this)"><i class="fas fa-heart"></i> Intereses</li>
+          <li class="nav-item" onclick="showTab('contacto', this)"><i class="fas fa-paper-plane"></i> Contacto</li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- BOTÓN OBLIGATORIO PARA VOLVER AL ANUARIO CENTRAL -->
+    <a href="../index.html" class="btn-back">
+      <i class="fas fa-arrow-left"></i> Volver al Anuario
+    </a>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+
+    <!-- RESUMEN / ESTADÍSTICAS RÁPIDAS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>03+</h3>
+        <p>Proyectos Web</p>
+      </div>
+      <div class="stat-card">
+        <h3>100%</h3>
+        <p>Código Responsive</p>
+      </div>
+      <div class="stat-card">
+        <h3>02+</h3>
+        <p>Años Aprendiendo</p>
+      </div>
+      <div class="stat-card">
+        <h3>Git</h3>
+        <p>Control de Versiones</p>
+      </div>
+    </div>
+
+    <!-- PESTAÑA: INICIO / RESUMEN -->
+    <section id="inicio" class="section active-section">
+      <h3 class="section-title"><i class="fas fa-star"></i> Bienvenido a mi Perfil Digital</h3>
+      <div class="card-box">
+        <h2 style="color: #ffffff; margin-bottom: 10px;">¡Hola! Soy Estefany Vilchez Gutierrez 👋</h2>
+        <p style="font-size: 1.02rem; line-height: 1.7; color: var(--pink-soft);">
+          Bienvenido a mi espacio del <strong>Anuario Digital 2026</strong>. Aquí podrás conocer mi trayectoria formativa, los proyectos interactivos que he maquetado, mis habilidades técnicas en desarrollo frontend y mis redes de contacto.
+        </p>
+      </div>
+    </section>
+
+    <!-- PESTAÑA: SOBRE MÍ -->
+    <section id="sobre-mi" class="section">
+      <h3 class="section-title"><i class="fas fa-user-circle"></i> Sobre mí</h3>
+      <div class="grid-two-cols">
+        <div class="card-box">
+          <h4 style="color: #ffffff; margin-bottom: 12px;">Biografía</h4>
+          <p style="line-height: 1.7;">
+            Soy apasionada por el desarrollo de software y el diseño de interfaces de usuario (UI/UX). Me enfoco en maquetar experiencias digitales atractivas, accesibles y optimizadas para cualquier dispositivo. Me gusta constantemente asumir retos lógicos, colaborar en GitHub y crear código limpio.
+          </p>
+        </div>
+        <div class="card-box">
+          <h4 style="color: #ffffff; margin-bottom: 12px;">Detalles Personales</h4>
+          <ul class="info-list">
+            <li><i class="fas fa-location-dot"></i> <span>Lima, Perú</span></li>
+            <li><i class="fas fa-briefcase"></i> <span>Estudiante de Desarrollo</span></li>
+            <li><i class="fas fa-language"></i> <span>Español (Nativo) / Inglés</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Disponible para proyectos</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA: HABILIDADES -->
+    <section id="habilidades" class="section">
+      <h3 class="section-title"><i class="fas fa-tools"></i> Mis Habilidades Técnicas</h3>
+      <div class="skills-container">
+
+        <div class="skill-bar-card">
+          <div class="skill-info">
+            <span><i class="fab fa-html5" style="color: #ec4899;"></i> HTML5 Semántico</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" style="width: 90%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-info">
+            <span><i class="fab fa-css3-alt" style="color: #ec4899;"></i> CSS3 & Layouts</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-info">
+            <span><i class="fab fa-js" style="color: #ec4899;"></i> JavaScript ES6+</span>
+            <span>75%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" style="width: 75%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-info">
+            <span><i class="fab fa-git-alt" style="color: #ec4899;"></i> Git & GitHub</span>
+            <span>80%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" style="width: 80%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-info">
+            <span><i class="fab fa-python" style="color: #ec4899;"></i> Python Básico</span>
+            <span>65%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" style="width: 65%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-info">
+            <span><i class="fas fa-mobile-alt" style="color: #ec4899;"></i> Diseño Responsive</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" style="width: 90%;"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PESTAÑA: PROYECTOS -->
+    <section id="proyectos" class="section">
+      <h3 class="section-title"><i class="fas fa-folder-open"></i> Proyectos Destacados</h3>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Anuario Colaborativo" class="project-banner">
+          <div class="project-body">
+            <div>
+              <h4>Anuario Digital Colaborativo 2026</h4>
+              <p>Plataforma web construida en equipo aplicando flujos de trabajo profesionales en GitHub con Pull Requests y ramas individuales.</p>
+              <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">GitHub</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="../index.html" class="btn-project btn-project-primary"><i class="fas fa-eye"></i> Ver Anuario</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Portafolio Web" class="project-banner">
+          <div class="project-body">
+            <div>
+              <h4>Portafolio Interactivo Personal</h4>
+              <p>Diseño web personalizado con panel dinámico, navegación lateral, estética en tonos rosa y compatibilidad móvil.</p>
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">CSS Grid</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-project btn-project-primary"><i class="fab fa-github"></i> Código Fonte</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Dashboard Web" class="project-banner">
+          <div class="project-body">
+            <div>
+              <h4>Dashboard & Sistema de Perfiles</h4>
+              <p>Interfaz moderna para gestión de datos, usuarios e información académica con diseño intuitivo.</p>
+              <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-project btn-project-primary"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PESTAÑA: EDUCACIÓN -->
+    <section id="experiencia" class="section">
+      <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Educación y Formación</h3>
+      <div class="card-box">
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <h4>Especialización en Desarrollo Web Frontend</h4>
+            <span>2025 - Presente</span>
+            <p>Maquetación avanzada, arquitecturas limpias, manipulación del DOM con JS y diseño responsivo.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Proyecto Anuario Digital Colaborativo</h4>
+            <span>2026</span>
+            <p>Integración de módulos dinámicos y control de versiones con Git (Forks, Checkout, Commits y Pull Requests).</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Fundamentos de Programación & Algoritmos</h4>
+            <span>2024</span>
+            <p>Lógica de programación, resolución de problemas y estructuras de datos básicas.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA: INTERESES -->
+    <section id="intereses" class="section">
+      <h3 class="section-title"><i class="fas fa-heart"></i> Intereses y Pasatiempos</h3>
+      <div class="interests-grid">
+        <div class="interest-card">
+          <i class="fas fa-palette"></i>
+          <span>Diseño UI/UX</span>
+        </div>
+        <div class="interest-card">
+          <i class="fas fa-robot"></i>
+          <span>Inteligencia Artificial</span>
+        </div>
+        <div class="interest-card">
+          <i class="fas fa-camera"></i>
+          <span>Fotografía</span>
+        </div>
+        <div class="interest-card">
+          <i class="fas fa-music"></i>
+          <span>Música</span>
+        </div>
+        <div class="interest-card">
+          <i class="fas fa-book"></i>
+          <span>Lectura Técnica</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA: CONTACTO -->
+    <section id="contacto" class="section">
+      <h3 class="section-title"><i class="fas fa-paper-plane"></i> Contacto y Redes</h3>
+      <div class="contact-grid">
+        
+        <div class="card-box">
+          <h4 style="color: #ffffff; margin-bottom: 14px;">Envíame un mensaje</h4>
+          <form onsubmit="alert('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.'); return false;">
+            <div class="form-group">
+              <label>Tu Nombre</label>
+              <input type="text" class="form-control" placeholder="Escribe tu nombre" required>
+            </div>
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input type="email" class="form-control" placeholder="nombre@correo.com" required>
+            </div>
+            <div class="form-group">
+              <label>Mensaje</label>
+              <textarea class="form-control" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+            <button type="submit" class="btn-send"><i class="fas fa-paper-plane"></i> Enviar Mensaje</button>
+          </form>
+        </div>
+
+        <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h4 style="color: #ffffff; margin-bottom: 14px;">Conéctate conmigo</h4>
+            <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+              Si deseas colaborar en algún proyecto web o ponerte en contacto conmigo, sígueme en mis redes sociales:
+            </p>
+            <div class="social-links">
+              <a href="https://github.com" target="_blank" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="mailto:estefany@ejemplo.com" class="social-btn" title="Correo"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div style="margin-top: 20px; font-size: 0.8rem; color: var(--pink-light); text-align: center;">
+            <p>© 2026 Estefany Vilchez Gutierrez | Anuario Colaborativo</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPT PARA NAVEGACIÓN ENTRE PESTAÑAS -->
+  <script>
+    function showTab(tabId, element) {
+      // Ocultar todas las secciones
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('active-section'));
+
+      // Mostrar la sección seleccionada
+      document.getElementById(tabId).classList.add('active-section');
+
+      // Actualizar botón activo en la barra lateral
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+      element.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
