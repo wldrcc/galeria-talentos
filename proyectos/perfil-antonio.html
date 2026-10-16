@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mi perfil personal, hobbies, currículum y horario de actividades.">
+    <title>Mi perfil personal</title>
+
+    <!-- Dependencias y rutas originales conservadas -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style-antonio.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales-all.global.min.js" defer></script>
+    <script src="../script-antonio.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark menu no-imprimir" aria-label="Navegación principal">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#perfil"><i class="bi bi-person-badge-fill me-2"></i>Mi perfil</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir o cerrar menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Regresar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#perfil">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cv">Mi CV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#horario">Mi horario</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container principal">
+        <section id="perfil" class="perfil shadow-sm">
+            <div class="icono-perfil"><i class="bi bi-person-fill" aria-hidden="true"></i></div>
+            <span class="etiqueta-seccion">PRESENTACIÓN</span>
+            <h1>Mi perfil personal</h1>
+            <p>Bienvenido a mi página personal. Me gusta aprender cosas nuevas, desarrollar mis habilidades y aprovechar mi tiempo libre. Aquí puedes conocer mis hobbies, revisar mi CV y organizar mis actividades.</p>
+            <button id="botonMensaje" class="btn btn-primary"><i class="bi bi-hand-thumbs-up me-2"></i>Conóceme</button>
+            <p id="mensaje" class="mensaje-bienvenida mt-3 mb-0" aria-live="polite"></p>
+        </section>
+
+        <section id="hobbies" class="seccion">
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">01</span>
+                <div><span class="sobre-titulo">TIEMPO LIBRE</span><h2><i class="bi bi-heart-fill me-2"></i>Mis hobbies</h2></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-sm-6 col-xl-3">
+                    <article class="card tarjeta h-100">
+                        <img src="../image/antonio/music.jpg" class="card-img-top" alt="Música" loading="lazy">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Música</h3>
+                            <p class="card-text">Me gusta escuchar música para relajarme y disfrutar de mi tiempo libre.</p>
+                            <button class="btn btn-outline-primary card-btn mt-auto" data-hobby="Música"><i class="bi bi-music-note me-1"></i>Ver más</button>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <article class="card tarjeta h-100">
+                        <img src="../image/antonio/book_1.jpg" class="card-img-top" alt="Lectura" loading="lazy">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Lectura</h3>
+                            <p class="card-text">Leer me permite aprender cosas nuevas y mejorar mis conocimientos.</p>
+                            <button class="btn btn-outline-primary card-btn mt-auto" data-hobby="Lectura"><i class="bi bi-book me-1"></i>Ver más</button>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <article class="card tarjeta h-100">
+                        <img src="../image/antonio/game_1.jpg" class="card-img-top" alt="Videojuegos" loading="lazy">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Videojuegos</h3>
+                            <p class="card-text">Disfruto los videojuegos porque son entretenidos y representan desafíos.</p>
+                            <button class="btn btn-outline-primary card-btn mt-auto" data-hobby="Videojuegos"><i class="bi bi-controller me-1"></i>Ver más</button>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <article class="card tarjeta h-100">
+                        <img src="../image/antonio/fut_1.jpg" class="card-img-top" alt="Fútbol" loading="lazy">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Fútbol</h3>
+                            <p class="card-text">Me gusta el fútbol porque es divertido y fomenta el trabajo en equipo.</p>
+                            <button class="btn btn-outline-primary card-btn mt-auto" data-hobby="Fútbol"><i class="bi bi-trophy me-1"></i>Ver más</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div id="detalleHobby" class="alert alert-info mt-4 d-none" aria-live="polite"></div>
+        </section>
+
+        <section id="cv" class="seccion">
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">02</span>
+                <div><span class="sobre-titulo">EXPERIENCIA Y FORMACIÓN</span><h2><i class="bi bi-file-earmark-person me-2"></i>Mi currículum</h2></div>
+            </div>
+            <article class="card cv shadow-sm">
+                <div class="cv-cabecera">
+                    <div class="cv-avatar"><i class="bi bi-person-vcard-fill"></i></div>
+                    <div><span class="sobre-titulo">CURRÍCULUM VITAE</span><h3 class="mb-1">Perfil profesional</h3><p class="mb-0">Ingeniería de Software con Inteligencia Artificial</p></div>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <section class="cv-bloque">
+                                <h4><i class="bi bi-person-lines-fill me-2"></i>Datos personales</h4>
+                                <p><i class="bi bi-person me-2"></i><strong>Nombre:</strong> Escribe tu nombre completo</p>
+                                <p><i class="bi bi-envelope me-2"></i><strong>Correo:</strong> tucorreo@gmail.com</p>
+                                <p><i class="bi bi-telephone me-2"></i><strong>Teléfono:</strong> Escribe tu número</p>
+                            </section>
+                        </div>
+                        <div class="col-md-7">
+                            <section class="cv-bloque">
+                                <h4><i class="bi bi-person-workspace me-2"></i>Perfil profesional</h4>
+                                <p>Estudiante de Ingeniería de Software con Inteligencia Artificial, interesado en aprender programación, desarrollo web y nuevas tecnologías.</p>
+                            </section>
+                            <section class="cv-bloque">
+                                <h4><i class="bi bi-mortarboard me-2"></i>Formación académica</h4>
+                                <p>Estudios de Ingeniería de Software con Inteligencia Artificial en SENATI.</p>
+                            </section>
+                        </div>
+                    </div>
+                    <section class="cv-bloque">
+                        <h4><i class="bi bi-stars me-2"></i>Habilidades</h4>
+                        <div class="habilidades">
+                            <span><i class="bi bi-check-circle-fill me-1"></i>HTML y CSS básico</span>
+                            <span><i class="bi bi-check-circle-fill me-1"></i>JavaScript básico</span>
+                            <span><i class="bi bi-check-circle-fill me-1"></i>Trabajo en equipo</span>
+                            <span><i class="bi bi-check-circle-fill me-1"></i>Aprendizaje de nuevas tecnologías</span>
+                        </div>
+                    </section>
+                    <div class="acciones-documento no-imprimir">
+                        <button class="btn btn-primary" id="imprimirCV"><i class="bi bi-printer me-2"></i>Imprimir CV en A4</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section id="horario" class="seccion">
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">03</span>
+                <div><span class="sobre-titulo">PLANIFICACIÓN</span><h2><i class="bi bi-calendar-week me-2"></i>Mi horario personal</h2></div>
+            </div>
+            <div class="card panel-horario shadow-sm mb-4 no-imprimir">
+                <div class="card-body">
+                    <p class="texto-ayuda">Selecciona un día del calendario y escribe una actividad para organizar tu horario.</p>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-8">
+                            <label for="actividad" class="form-label">Nombre de la actividad</label>
+                            <input type="text" id="actividad" class="form-control" placeholder="Ej.: Estudiar programación" maxlength="120" autocomplete="off">
+                        </div>
+                        <div class="col-md-4">
+                            <button id="agregarActividad" class="btn btn-primary w-100"><i class="bi bi-plus-circle me-2"></i>Agregar actividad</button>
+                        </div>
+                    </div>
+                    <p id="mensajeHorario" class="mensaje-horario mt-3 mb-0" aria-live="polite"></p>
+                </div>
+            </div>
+            <div class="card calendario-panel shadow-sm no-imprimir">
+                <div class="card-body"><div id="calendar"></div></div>
+            </div>
+            <div class="acciones-documento no-imprimir">
+                <button id="imprimirHorario" class="btn btn-secondary"><i class="bi bi-printer me-2"></i>Imprimir horario en A4</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie no-imprimir">
+        <div class="container">
+            <div class="row g-4 align-items-start">
+                <div class="col-md-5"><h4><i class="bi bi-info-circle me-2"></i>Más información</h4><p class="mb-0">Gracias por visitar mi página personal.</p></div>
+                <div class="col-md-7">
+                    <div class="footer-datos">
+                        <p><i class="bi bi-telephone me-2"></i>999999999</p>
+                        <p><i class="bi bi-envelope me-2"></i>sincorreo@gmail.com</p>
+                        <p><i class="bi bi-geo-alt me-2"></i>Ubicación: S/D</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-final"><span>Mi perfil personal</span><span>© <span id="anioActual"></span></span></div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
