@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce los gustos, intereses y habilidades de Itzel Bartolo.">
+    <title>Sobre mí | Itzel Bartolo</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="inicio">
+    <header class="navbar">
+        <a href="../../index.html" class="logo" aria-label="Volver al inicio de la galería">GALERIA<span>.</span></a>
+
+        <nav aria-label="Navegación principal">
+            <a href="#sobre-mi">Sobre mí</a>
+            <a href="#intereses">Intereses</a>
+            <a href="#habilidades">Habilidades</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="titulo-principal">
+            <div class="hero-content">
+                <span class="eyebrow"><span class="status-dot" aria-hidden="true"></span>Trabajo</span>
+
+                <h1 id="titulo-principal">Hola, soy <span>Itzel.</span></h1>
+
+                <p class="hero-description">
+                    Soy Itzel Bartolo. En esta página comparto un poco sobre mí,
+                    mis gustos y algunas de las cosas que me interesan.
+                </p>
+
+                <a href="#sobre-mi" class="button">Conocer más <span aria-hidden="true">↗</span></a>
+            </div>
+
+            <div class="hero-photo">
+                <!--
+                    RUTA DE LA IMAGEN:
+                    Esta versión supone que el HTML está dos carpetas debajo de la raíz
+                    del proyecto y que la imagen está en la carpeta raíz/image/chango.jpeg.
+                    Si tu carpeta de imagen está en otro lugar, ajusta la ruta de abajo.
+                -->
+                <img src="../../image/chango.jpeg" alt="Fotografía de Itzel Bartolo" fetchpriority="high">
+                <span class="photo-tag">XD</span>
+            </div>
+        </section>
+
+        <section class="about section" id="sobre-mi">
+            <div class="section-heading">
+                <span class="eyebrow">01 — Presentación</span>
+                <h2>Sobre mí</h2>
+            </div>
+
+            <div class="about-content">
+                <div class="about-mark" aria-hidden="true">“</div>
+                <div>
+                    <p class="about-lead">Un poco sobre mí y las cosas que forman parte de mi vida.</p>
+                    <p class="body-text">
+                        Soy Itzel Bartolo. Tengo mis propios gustos, intereses y formas de hacer las cosas.
+                    </p>
+                    <p class="body-text">
+                        En esta página comparto algunas de las cosas que me gustan y las habilidades
+                        que quiero seguir desarrollando.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="interests section" id="intereses">
+            <div class="section-heading">
+                <span class="eyebrow">02 — Mis gustos</span>
+                <h2>Las cosas que me gustan</h2>
+                <p class="section-description">Algunas actividades que disfruto en mi tiempo libre.</p>
+            </div>
+
+            <div class="interest-grid">
+                <article class="interest-card">
+                    <span class="card-icon" aria-hidden="true">♫</span>
+                    <span class="card-number">01</span>
+                    <h3>Música</h3>
+                    <p>Escuchar canciones y descubrir música nueva.</p>
+                </article>
+
+                <article class="interest-card">
+                    <span class="card-icon" aria-hidden="true">✧</span>
+                    <span class="card-number">02</span>
+                    <h3>Creatividad</h3>
+                    <p>Explorar ideas y probar cosas diferentes.</p>
+                </article>
+
+                <article class="interest-card">
+                    <span class="card-icon" aria-hidden="true">☆</span>
+                    <span class="card-number">03</span>
+                    <h3>Tiempo libre</h3>
+                    <p>Dedicar tiempo a las actividades que me gustan.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="skills section" id="habilidades">
+            <div class="section-heading">
+                <span class="eyebrow">03 — Habilidades</span>
+                <h2>Lo que me define</h2>
+            </div>
+
+            <div class="skills-content">
+                <p class="body-text">
+                    Habilidades que considero importantes y que puedo seguir mejorando con la práctica.
+                </p>
+
+                <div class="skill-list">
+                    <article class="skill-item">
+                        <div class="skill-number">01</div>
+                        <div class="skill-info">
+                            <h3>Creatividad</h3>
+                            <p>Buscar ideas y diferentes formas de hacer las cosas.</p>
+                        </div>
+                    </article>
+
+                    <article class="skill-item">
+                        <div class="skill-number">02</div>
+                        <div class="skill-info">
+                            <h3>Aprendizaje</h3>
+                            <p>Adquirir conocimientos y ponerlos en práctica.</p>
+                        </div>
+                    </article>
+
+                    <article class="skill-item">
+                        <div class="skill-number">03</div>
+                        <div class="skill-info">
+                            <h3>Perseverancia</h3>
+                            <p>Continuar trabajando para completar mis tareas.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="../../index.html" class="logo">Galeria<span>.</span></a>
+        <p>Itzel Bartolo · Deux</p>
+        <a href="#inicio" class="back-top">Volver arriba <span aria-hidden="true">↑</span></a>
+    </footer>
+</body>
+</html>
