@@ -1,2 +1,2 @@
 # galeria-talentos
-talento senatino
+Perfil de estudiantes

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuario Colaborativo 2026</title>
+    <link rel="stylesheet" href="style-main.css">
+</head>
+<body>
+    <header>
+        <h1>Galería de Talentos</h1>
+        <p>Haz clic en una tarjeta para ver el perfil individual</p>
+    </header>
+
+    <div id="container-anuario" class="grid-container">
+        </div>
+
+    <script>
+        // CADA ALUMNO AGREGA SU OBJETO A ESTA LISTA
+        const alumnos = [
+            { nombre: "Ana García", imagen: "image/img1.jpg", archivo: "perfil-ana.html" },
+            { nombre: "Juan Pérez", imagen: "https://i.pravatar.cc/150?u=juan", archivo: "perfil-juan.html" },
+            { nombre: "Lucía Torres", imagen: "https://i.pravatar.cc/150?u=lucia", archivo: "perfil-lucia.html" }
+        ];
+
+        const container = document.getElementById('container-anuario');
+
+        alumnos.forEach(alumno => {
+            container.innerHTML += `
+                <div class="card" onclick="window.location.href='proyectos/${alumno.archivo}'">
+                    <img src="${alumno.imagen}" alt="${alumno.nombre}">
+                    <h3>${alumno.nombre}</h3>
+                    <span>Ver Perfil →</span>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

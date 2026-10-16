@@ -1,0 +1,6 @@
+Creación del Perfil Individual
+
+1. Entra en la carpeta `proyectos/`.
+2. Crea un archivo llamado `perfil-tunombre.html` (usa solo letras minúsculas y guiones).
+3. Utiliza la **plantilla base** proporcionada para maquetar tu información (puedes personalizar colores, fuentes y agregar tus redes sociales).
+4. Asegúrate de que el botón **"Volver al Anuario"** apunte correctamente a `../index.html`.
