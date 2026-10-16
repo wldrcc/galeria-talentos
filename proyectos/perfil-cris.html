@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#742d46">
+  <meta name="description" content="Perfil académico, habilidades y proyectos de Fara Cristina Espejo Concha.">
+  <title>Mi perfil | Fara Cristina Espejo Concha</title>
+
+  <!-- Fuentes: si no hay conexión, se utilizarán las fuentes de respaldo del sistema. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. PALETA Y CONFIGURACIÓN GENERAL
+       Cambia aquí los colores principales de todo el perfil.
+       ========================================================= */
+    :root {
+      --borgona: #742d46;
+      --borgona-oscuro: #4b2032;
+      --borgona-profundo: #351725;
+      --rosa: #d995aa;
+      --rosa-claro: #f5dfe7;
+      --rosa-palido: #fff5f8;
+      --malva: #b58ca2;
+      --crema: #fffdfb;
+      --fondo: #f7f0f2;
+      --texto: #392832;
+      --texto-suave: #76636e;
+      --borde: #ead9e0;
+      --blanco: #ffffff;
+      --verde: #628b70;
+      --sombra: 0 18px 42px rgba(88, 36, 57, 0.09);
+      --radio-grande: 24px;
+      --radio-medio: 17px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      min-height: 100vh;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button, input { font: inherit; }
+    ::selection { color: var(--borgona-profundo); background: var(--rosa-claro); }
+
+    /* =========================================================
+       2. DISTRIBUCIÓN: MENÚ LATERAL + CONTENIDO
+       ========================================================= */
+    .app {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex: 0 0 245px;
+      flex-direction: column;
+      min-height: 100vh;
+      height: 100vh;
+      padding: 27px 18px 20px;
+      overflow-y: auto;
+      color: #fff8fa;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(217, 149, 170, 0.19), transparent 32%),
+        linear-gradient(165deg, var(--borgona), var(--borgona-oscuro) 75%, var(--borgona-profundo));
+      border-right: 1px solid rgba(255,255,255,0.12);
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 9px 27px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      flex: 0 0 43px;
+      width: 43px;
+      height: 43px;
+      border: 1px solid rgba(255,255,255,0.32);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.10);
+      color: #ffe3ec;
+      font: 800 19px/1 "Manrope", sans-serif;
+    }
+    .brand-title { font: 800 15px/1.25 "Manrope", sans-serif; letter-spacing: .2px; }
+    .brand-subtitle { margin-top: 5px; color: #e9cbd6; font-size: 9px; font-weight: 700; letter-spacing: 1.1px; }
+
+    .sidebar-label {
+      margin: 26px 10px 11px;
+      color: #dcb8c7;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .nav-menu { display: grid; gap: 7px; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 45px;
+      padding: 10px 13px;
+      color: #f0dfe5;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background .22s ease, color .22s ease, transform .22s ease, border-color .22s ease;
+    }
+    .nav-link:hover, .nav-link.activo {
+      color: var(--borgona-oscuro);
+      background: #f9e8ee;
+      border-color: rgba(255,255,255,.5);
+      transform: translateX(2px);
+    }
+    .nav-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 23px;
+      flex: 0 0 23px;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .sidebar-spacer { flex: 1; min-height: 24px; }
+    .sidebar-note {
+      margin: 20px 4px 18px;
+      padding: 15px 13px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 15px;
+      background: rgba(255,255,255,.065);
+    }
+    .sidebar-note p { color: #f1dfe6; font-size: 11px; line-height: 1.85; }
+    .sidebar-note strong { display: block; margin-top: 9px; color: #f7bdcf; font-size: 10px; }
+
+    /* BOTÓN SOLICITADO: queda en la parte baja del menú lateral. */
+    .back-index {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 11px;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 13px;
+      background: linear-gradient(110deg, #e8aabd, #f3cfda);
+      box-shadow: 0 8px 20px rgba(30, 8, 19, .18);
+      color: #4b2032;
+      text-align: center;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+    }
+    .back-index:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(30,8,19,.25); filter: brightness(1.04); }
+    .back-index:focus-visible, .nav-link:focus-visible, .action-button:focus-visible, summary:focus-visible {
+      outline: 3px solid #d995aa;
+      outline-offset: 3px;
+    }
+
+    .dashboard { flex: 1; min-width: 0; padding: 25px 28px 27px; }
+    .dashboard-inner { width: 100%; max-width: 1600px; margin: 0 auto; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin: 0 0 20px;
+    }
+    .breadcrumb { color: var(--texto-suave); font-size: 11px; }
+    .breadcrumb strong { color: var(--borgona); font-weight: 800; }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid #e3cbd5;
+      border-radius: 30px;
+      background: rgba(255,255,255,.72);
+      color: #6c4a5b;
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #6eaa7d; box-shadow: 0 0 0 4px rgba(110,170,125,.13); }
+
+    /* =========================================================
+       3. PORTADA ANIMADA Y FOTO RECTANGULAR
+       PORTADA: cambia la ruta en .hero::before, más abajo.
+       FOTO: cambia el src de .foto-perfil en el HTML.
+       ========================================================= */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: 225px minmax(0, 1fr);
+      align-items: center;
+      gap: 34px;
+      min-height: 315px;
+      padding: 34px 42px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: var(--radio-grande);
+      background: linear-gradient(120deg, #5b263d, #956078 60%, #c89caf);
+      box-shadow: var(--sombra);
+      color: white;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -12%;
+      z-index: -2;
+      /* CAMBIA ESTA RUTA por tu imagen de portada. Ejemplo: ../image/portada-cris.jpg */
+      background-image: url("../image/portada-cris.jpg");
+      background-position: center 46%;
+      background-size: cover;
+      opacity: .58;
+      animation: movimientoPortada 28s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(53,23,37,.94) 0%, rgba(83,34,55,.86) 45%, rgba(111,47,72,.64) 100%),
+        linear-gradient(0deg, rgba(50,18,33,.30), transparent 70%);
+    }
+    @keyframes movimientoPortada {
+      0% { transform: scale(1.04) translate3d(-1%, 0, 0); background-position: 45% 50%; }
+      100% { transform: scale(1.13) translate3d(1%, -1%, 0); background-position: 58% 45%; }
+    }
+    .foto-marco {
+      position: relative;
+      width: 100%;
+      max-width: 225px;
+      padding: 7px;
+      border: 1px solid rgba(255,231,239,.72);
+      border-radius: 19px; /* Rectangular con bordes suaves, NO circular. */
+      background: rgba(255,235,241,.15);
+      box-shadow: 0 18px 38px rgba(30,8,19,.25);
+      transform: rotate(-1.4deg);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .foto-marco:hover { transform: rotate(0) translateY(-4px); box-shadow: 0 24px 45px rgba(30,8,19,.32); }
+    .foto-perfil {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 13px;
+      background: #e9cbd6;
+    }
+    .foto-caption {
+      position: absolute;
+      right: -13px;
+      bottom: 19px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 10px;
+      background: #f8e6ec;
+      color: var(--borgona-oscuro);
+      box-shadow: 0 8px 18px rgba(35,10,22,.18);
+      font-size: 9px;
+      font-weight: 800;
+    }
+    .hero-copy { min-width: 0; max-width: 800px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,239,244,.30);
+      border-radius: 30px;
+      background: rgba(255,245,248,.11);
+      color: #ffe4ec;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.25px;
+      text-transform: uppercase;
+    }
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #f6bfd0; }
+    .hero h1 {
+      max-width: 760px;
+      margin-bottom: 9px;
+      color: #fff8fa;
+      font: 800 clamp(1.9rem, 3.5vw, 3.15rem)/1.13 "Manrope", sans-serif;
+      letter-spacing: -1.5px;
+      overflow-wrap: anywhere;
+    }
+    .hero-role { margin-bottom: 12px; color: #f9d8e3; font-size: 14px; font-weight: 700; }
+    .hero-description { max-width: 650px; color: #f7e8ed; font-size: 12px; line-height: 1.9; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 19px; }
+    .hero-tag { padding: 7px 10px; border: 1px solid rgba(255,245,248,.23); border-radius: 9px; background: rgba(255,255,255,.10); color: #fff4f7; font-size: 10px; font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .action-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 39px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 11px;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .action-button:hover { transform: translateY(-2px); }
+    .action-primary { background: #f8dfe7; color: var(--borgona-oscuro); }
+    .action-secondary { background: rgba(255,255,255,.10); color: #fff7f9; }
+
+    /* =========================================================
+       4. CUERPO DEL DASHBOARD EN TRES COLUMNAS
+       ========================================================= */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: minmax(205px, .84fr) minmax(275px, 1.12fr) minmax(290px, 1.06fr);
+      align-items: start;
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .column { display: grid; align-content: start; gap: 18px; min-width: 0; }
+    .panel {
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid #eee0e5;
+      border-radius: var(--radio-medio);
+      background: rgba(255,253,251,.93);
+      box-shadow: 0 9px 25px rgba(88,36,57,.045);
+      scroll-margin-top: 22px;
+    }
+    .panel-heading { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 18px; }
+    .panel-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 37px;
+      width: 37px;
+      height: 37px;
+      border: 1px solid #ead0db;
+      border-radius: 12px;
+      background: #f9e8ee;
+      color: var(--borgona);
+      font-size: 16px;
+    }
+    .panel h2 { color: var(--borgona-oscuro); font: 800 15px/1.4 "Manrope", sans-serif; letter-spacing: -.25px; }
+    .panel-subtitle { margin-top: 3px; color: #977e8a; font-size: 10px; line-height: 1.6; }
+    .small-rule { height: 1px; margin: 14px 0; background: linear-gradient(90deg, #e4bcca, transparent); }
+
+    /* Datos personales */
+    .info-list { display: grid; gap: 15px; }
+    .info-item { display: grid; grid-template-columns: 28px minmax(0,1fr); align-items: start; gap: 9px; }
+    .info-item-icon { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 9px; background: #fbebf0; color: var(--borgona); font-size: 13px; }
+    .info-label { display: block; color: #a08a95; font-size: 9px; font-weight: 700; letter-spacing: .65px; text-transform: uppercase; }
+    .info-value { display: block; margin-top: 2px; color: #513747; font-size: 11px; font-weight: 700; overflow-wrap: anywhere; }
+    .info-value a { text-decoration: none; }
+    .info-value a:hover { color: var(--borgona); text-decoration: underline; }
+    .social-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
+    .social-pill { display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid #e9d4dd; border-radius: 10px; background: #fff7fa; color: #714257; text-decoration: none; font-size: 10px; font-weight: 800; }
+    .social-pill:hover { background: #f5dfe7; }
+
+    .connect-card {
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      border: 1px solid #e8bfd0;
+      border-radius: var(--radio-medio);
+      background: linear-gradient(140deg, #f5dce5, #fff5f8 80%);
+    }
+    .connect-card::after { content: ""; position: absolute; right: -30px; bottom: -43px; width: 115px; height: 115px; border: 1px solid rgba(116,45,70,.13); border-radius: 50%; box-shadow: 0 0 0 15px rgba(116,45,70,.04), 0 0 0 30px rgba(116,45,70,.025); pointer-events: none; }
+    .connect-card h3 { position: relative; z-index: 1; margin-bottom: 7px; color: var(--borgona); font: 800 14px "Manrope", sans-serif; }
+    .connect-card p { position: relative; z-index: 1; max-width: 280px; color: #775867; font-size: 10px; line-height: 1.85; }
+    .connect-card a { position: relative; z-index: 1; display: inline-flex; margin-top: 13px; color: var(--borgona); font-size: 10px; font-weight: 800; text-decoration: none; }
+    .connect-card a:hover { text-decoration: underline; }
+
+    /* Sobre mí, atributos e intereses */
+    .about-text { color: #715d68; font-size: 11px; line-height: 2; }
+    .about-text strong { color: var(--borgona); font-weight: 800; }
+    .quick-stats { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; margin-top: 16px; }
+    .stat-box { padding: 12px 10px; border: 1px solid #eddae2; border-radius: 12px; background: #fff7fa; }
+    .stat-number { display: block; color: var(--borgona); font: 800 17px/1.3 "Manrope", sans-serif; }
+    .stat-label { display: block; margin-top: 3px; color: #987f8b; font-size: 9px; }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
+    .soft-tag { display: inline-flex; align-items: center; gap: 6px; padding: 7px 9px; border: 1px solid #ead6df; border-radius: 9px; background: #fff8fa; color: #70475a; font-size: 10px; font-weight: 700; }
+    .soft-tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #c47d97; }
+    .language-list { display: grid; gap: 13px; }
+    .language-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; color: #664858; font-size: 10px; font-weight: 800; }
+    .language-level { color: #9b7b8b; font-size: 9px; font-weight: 600; }
+    .bar-track { width: 100%; height: 6px; overflow: hidden; border-radius: 12px; background: #f1e4e9; }
+    .bar-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #b76e89, #e0a9bc); }
+    .interests-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; }
+    .interest-item { display: grid; justify-items: center; gap: 6px; min-height: 78px; padding: 13px 7px; border: 1px solid #efdee5; border-radius: 12px; background: #fff9fb; text-align: center; }
+    .interest-icon { color: var(--borgona); font-size: 19px; line-height: 1; }
+    .interest-item span:last-child { color: #806576; font-size: 9px; font-weight: 700; }
+
+    /* Habilidades con indicadores */
+    .skill-list { display: grid; gap: 14px; }
+    .skill-top { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+    .skill-name { color: #634457; font-size: 10px; font-weight: 800; }
+    .skill-type { color: #a38a96; font-size: 9px; }
+    .skill-fill { height: 6px; border-radius: 20px; background: linear-gradient(90deg, #8a3f5b, #d58ca6); }
+    .skill-note { margin-top: 13px; color: #a18a95; font-size: 9px; line-height: 1.8; }
+
+    /* Proyectos ampliables: pulsa el encabezado de cada tarjeta. */
+    .project-list { display: grid; gap: 14px; }
+    .project-card { overflow: hidden; border: 1px solid #ead8e0; border-radius: 14px; background: #fff; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    .project-card:hover { transform: translateY(-3px); border-color: #d8adbd; box-shadow: 0 12px 22px rgba(88,36,57,.08); }
+    .project-card summary { display: block; cursor: pointer; list-style: none; }
+    .project-card summary::-webkit-details-marker { display: none; }
+    .project-image-wrap { position: relative; height: 118px; overflow: hidden; background: linear-gradient(130deg, #e8c1cf, #b77d96); }
+    .project-image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+    .project-card:hover .project-image { transform: scale(1.045); }
+    .project-image-placeholder { display: grid; place-items: center; width: 100%; height: 100%; color: #fff7fa; font: 800 28px "Manrope", sans-serif; letter-spacing: 2px; background: linear-gradient(135deg, #6c2b45, #ce91a7); }
+    .project-image-placeholder[hidden] { display: none; }
+    .foto-marco > .project-image-placeholder { aspect-ratio: 4 / 5; height: auto; border: 1px solid rgba(255,255,255,.38); border-radius: 13px; }
+    .project-content { padding: 13px 14px 14px; }
+    .project-kicker { display: inline-block; margin-bottom: 6px; color: #a16c82; font-size: 8px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .project-title-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .project-title { color: #4f2a3d; font: 800 12px/1.4 "Manrope", sans-serif; }
+    .project-toggle { display: grid; place-items: center; flex: 0 0 24px; width: 24px; height: 24px; border-radius: 8px; background: #f8e6ed; color: var(--borgona); font-size: 14px; transition: transform .2s ease; }
+    details[open] .project-toggle { transform: rotate(45deg); }
+    .project-short { margin-top: 7px; color: #8c7581; font-size: 10px; line-height: 1.8; }
+    .project-extra { padding: 0 14px 14px; color: #765e6a; font-size: 10px; line-height: 1.9; }
+    .project-extra strong { color: var(--borgona); }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+    .project-tags span { padding: 4px 7px; border-radius: 6px; background: #f8eaf0; color: #7a435b; font-size: 8px; font-weight: 800; }
+    .project-hint { margin-top: 12px; color: #a18b96; font-size: 9px; }
+
+    /* Formación y trayectoria */
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { position: relative; padding-left: 17px; border-left: 2px solid #e7c7d3; }
+    .timeline-item::before { content: ""; position: absolute; top: 4px; left: -5px; width: 8px; height: 8px; border: 2px solid #fff; border-radius: 50%; background: #b76e89; box-shadow: 0 0 0 1px #d5a4b7; }
+    .timeline-date { color: #ad7c91; font-size: 9px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+    .timeline-item h3 { margin-top: 3px; color: #583449; font: 800 11px/1.6 "Manrope", sans-serif; }
+    .timeline-item p { margin-top: 3px; color: #8b7480; font-size: 10px; line-height: 1.8; }
+
+    /* Contacto */
+    .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .contact-action { display: flex; align-items: center; gap: 9px; min-width: 0; padding: 11px; border: 1px solid #ead8e0; border-radius: 11px; background: #fff8fa; text-decoration: none; transition: background .2s ease, transform .2s ease; }
+    .contact-action:hover { background: #f9e8ee; transform: translateY(-2px); }
+    .contact-action-icon { display: grid; place-items: center; flex: 0 0 30px; width: 30px; height: 30px; border-radius: 9px; background: #f3dce5; color: var(--borgona); font-size: 14px; }
+    .contact-action small { display: block; color: #a08894; font-size: 8px; }
+    .contact-action strong { display: block; color: #684357; font-size: 10px; overflow-wrap: anywhere; }
+
+    footer { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 22px 5px 4px; color: #a28e98; font-size: 9px; }
+    footer strong { color: #795165; }
+    .footer-line { width: 35px; height: 2px; margin-bottom: 6px; border-radius: 4px; background: linear-gradient(90deg, #8a3f5b, #e0a9bc); }
+
+    /* =========================================================
+       5. RESPONSIVE: TABLETAS Y CELULARES
+       ========================================================= */
+    @media (max-width: 1240px) {
+      .sidebar { flex-basis: 220px; padding-inline: 14px; }
+      .dashboard { padding: 22px 20px; }
+      .hero { grid-template-columns: 190px minmax(0,1fr); gap: 27px; padding: 30px; }
+      .foto-marco { max-width: 190px; }
+      .dashboard-grid { grid-template-columns: minmax(190px,.8fr) minmax(260px,1.1fr); }
+      .column-projects { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+      .column-projects > .panel:first-child { grid-row: span 2; }
+      .project-image-wrap { height: 135px; }
+    }
+    @media (max-width: 780px) {
+      .app { display: block; }
+      .sidebar { position: relative; width: 100%; height: auto; min-height: auto; padding: 15px 16px; overflow: visible; }
+      .brand { padding: 0 2px 14px; }
+      .sidebar-label { margin: 15px 2px 8px; }
+      .nav-menu { display: flex; flex-wrap: wrap; gap: 6px; }
+      .nav-link { min-height: 37px; gap: 7px; padding: 8px 10px; font-size: 10px; }
+      .nav-icon { width: auto; flex-basis: auto; font-size: 13px; }
+      .sidebar-spacer, .sidebar-note { display: none; }
+      .back-index { width: fit-content; margin-top: 13px; padding: 10px 14px; }
+      .dashboard { padding: 18px 14px 22px; }
+      .topbar { align-items: flex-start; flex-direction: column; gap: 9px; }
+      .hero { grid-template-columns: 145px minmax(0,1fr); gap: 20px; min-height: 260px; padding: 24px; }
+      .foto-marco { max-width: 145px; }
+      .hero h1 { font-size: clamp(1.45rem, 4.4vw, 2.3rem); letter-spacing: -.8px; }
+      .hero-role { font-size: 12px; }
+      .hero-description { font-size: 11px; }
+      .hero-tag { font-size: 9px; }
+      .dashboard-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 13px; }
+      .column-projects { grid-column: 1 / -1; }
+      .panel { padding: 18px; }
+    }
+    @media (max-width: 540px) {
+      .dashboard { padding: 14px 10px 20px; }
+      .status-pill { font-size: 9px; }
+      .hero { grid-template-columns: 1fr; gap: 22px; padding: 21px 18px 24px; border-radius: 19px; }
+      .foto-marco { width: 142px; max-width: 142px; margin: 0 auto; }
+      .foto-caption { right: -10px; bottom: 12px; }
+      .hero-copy { text-align: center; }
+      .hero h1 { max-width: 100%; font-size: clamp(1.7rem, 8vw, 2.25rem); }
+      .hero-tags, .hero-actions { justify-content: center; }
+      .hero-description { margin-inline: auto; }
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .column-projects { grid-column: auto; grid-template-columns: 1fr; }
+      .column-projects > .panel:first-child { grid-row: auto; }
+      .project-image-wrap { height: 145px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="inicio">
+    <!-- MENÚ LATERAL: sus opciones llevan a las secciones de esta misma página. -->
+    <aside class="sidebar" aria-label="Menú principal del perfil">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">FC</div>
+        <div>
+          <div class="brand-title">Mi Perfil</div>
+          <div class="brand-subtitle">PORTAFOLIO PERSONAL</div>
+        </div>
+      </div>
+
+      <p class="sidebar-label">Panel principal</p>
+      <nav class="nav-menu" aria-label="Navegación del perfil">
+        <a class="nav-link activo" href="#inicio"><span class="nav-icon" aria-hidden="true">⌂</span>Inicio</a>
+        <a class="nav-link" href="#sobre-mi"><span class="nav-icon" aria-hidden="true">♙</span>Sobre mí</a>
+        <a class="nav-link" href="#proyectos"><span class="nav-icon" aria-hidden="true">▣</span>Proyectos</a>
+        <a class="nav-link" href="#habilidades"><span class="nav-icon" aria-hidden="true">⌘</span>Habilidades</a>
+        <a class="nav-link" href="#formacion"><span class="nav-icon" aria-hidden="true">▤</span>Formación</a>
+        <a class="nav-link" href="#contacto"><span class="nav-icon" aria-hidden="true">✉</span>Contacto</a>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-note">
+        <p>“Cada proyecto es una oportunidad para aprender, colaborar y transformar ideas en soluciones.”</p>
+        <strong>— Mi enfoque profesional</strong>
+      </div>
+
+      <!-- IMPORTANTE: si index.html está en la misma carpeta, cambia ../index.html por index.html. -->
+      <a class="back-index" href="../index.html" aria-label="Volver al índice del anuario">
+        <span aria-hidden="true">←</span>
+        <span>Volver al Anuario</span>
+      </a>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL DEL DASHBOARD -->
+    <main class="dashboard">
+      <div class="dashboard-inner">
+        <div class="topbar">
+          <p class="breadcrumb">Portafolio personal <span aria-hidden="true">/</span> <strong>Mi espacio</strong></p>
+          <div class="topbar-right">
+            <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> En constante aprendizaje</span>
+            <span class="status-pill">Trabajo otorgado por Ing. Wilder Cayllahua · 2026</span>
+          </div>
+        </div>
+
+        <!-- PORTADA: coloca una imagen panorámica en ../image/portada-cris.jpg o cambia la ruta en el CSS. -->
+        <header class="hero" aria-labelledby="nombre-perfil">
+          <div class="foto-marco">
+            <!-- FOTO PERSONAL: conserva el formato rectangular. Cambia esta ruta si tu imagen está en otra carpeta. -->
+            <img class="foto-perfil" src="../image/img-cris1.png" alt="Fotografía de Fara Cristina Espejo Concha" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+            <div class="project-image-placeholder" hidden aria-label="Espacio para la fotografía">FC</div>
+            <span class="foto-caption">Perfil personal</span>
+          </div>
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Perfil académico y profesional</span>
+            <h1 id="nombre-perfil">Fara Cristina Espejo Concha</h1>
+            <p class="hero-role">Estudiante de Ingeniería de Software con Inteligencia Artificial</p>
+            <p class="hero-description">Me interesa crear experiencias digitales útiles, desarrollar soluciones completas y seguir creciendo a través de proyectos reales, la creatividad y el trabajo en equipo.</p>
+            <div class="hero-tags">
+              <span class="hero-tag">🎓 V Semestre</span>
+              <span class="hero-tag">♍ 22 Años</span>
+              <span class="hero-tag">💻 Desarrollo web</span>
+            </div>
+            <div class="hero-actions">
+              <a class="action-button action-primary" href="#proyectos">▣ Explorar proyectos <span aria-hidden="true">→</span></a>
+              <a class="action-button action-secondary" href="#contacto">✉ Contactarme</a>
+            </div>
+          </div>
+        </header>
+
+        <div class="dashboard-grid">
+          <!-- COLUMNA IZQUIERDA: datos de contacto y presentación breve. -->
+          <div class="column column-profile">
+            <section class="panel" id="datos" aria-labelledby="datos-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">▤</span>
+                <div>
+                  <h2 id="datos-titulo">Información de contacto</h2>
+                  <p class="panel-subtitle">Mis datos principales</p>
+                </div>
+              </div>
+              <div class="info-list">
+                <div class="info-item">
+                  <span class="info-item-icon" aria-hidden="true">⌂</span>
+                  <div><span class="info-label">Ubicación</span><span class="info-value">Huancayo, Perú</span></div>
+                </div>
+                <div class="info-item">
+                  <span class="info-item-icon" aria-hidden="true">✉</span>
+                  <div><span class="info-label">Correo</span><span class="info-value"><a href="faraespejoconcha@gmail.com">faraespejoconcha@gmail.com</a></span></div>
+                </div>
+                <div class="info-item">
+                  <span class="info-item-icon" aria-hidden="true">◉</span>
+                  <div><span class="info-label">WhatsApp</span><span class="info-value"><a href="https://wa.me/51921893658" target="_blank" rel="noopener noreferrer">921 893 658</a></span></div>
+                </div>
+                <div class="info-item">
+                  <span class="info-item-icon" aria-hidden="true">＠</span>
+                  <div><span class="info-label">Usuario social</span><span class="info-value">@cc1030</span></div>
+                </div>
+                <div class="info-item">
+                  <span class="info-item-icon" aria-hidden="true">⌘</span>
+                  <div><span class="info-label">Especialidad</span><span class="info-value">Software + Inteligencia Artificial</span></div>
+                </div>
+              </div>
+              <div class="social-row">
+                <a class="social-pill" href="https://wa.me/51921893658" target="_blank" rel="noopener noreferrer">◉ WhatsApp</a>
+                <a class="social-pill" href="#contacto">✉ Escríbeme</a>
+              </div>
+            </section>
+
+            <section class="connect-card" aria-labelledby="connect-title">
+              <h3 id="connect-title">¡Conectemos!</h3>
+              <p>Me interesa conocer personas, compartir ideas y participar en proyectos donde podamos aprender y crear soluciones en conjunto.</p>
+              <a href="#contacto">Hablemos de una idea <span aria-hidden="true">→</span></a>
+            </section>
+
+            <section class="panel" id="formacion" aria-labelledby="formacion-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">▤</span>
+                <div>
+                  <h2 id="formacion-titulo">Formación y experiencia</h2>
+                  <p class="panel-subtitle">Mi recorrido hasta ahora</p>
+                </div>
+              </div>
+              <div class="timeline">
+                <article class="timeline-item">
+                  <span class="timeline-date">Actualmente</span>
+                  <h3>Ingeniería de Software con IA</h3>
+                  <p>Formación académica orientada a programación, desarrollo de sistemas y tecnologías inteligentes.</p>
+                </article>
+                <article class="timeline-item">
+                  <span class="timeline-date">Experiencia en proyectos</span>
+                  <h3>GootWork</h3>
+                  <p>Participación en proyectos tecnológicos y desarrollo de interfaces digitales.</p>
+                </article>
+                <article class="timeline-item">
+                  <span class="timeline-date">Proyecto reciente</span>
+                  <h3>Goothost · Administrador</h3>
+                  <p>Desarrollo de interfaz y backend para funcionalidades del modo administrador.</p>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <!-- COLUMNA CENTRAL: descripción, competencias e intereses. -->
+          <div class="column column-about">
+            <section class="panel" id="sobre-mi" aria-labelledby="sobre-mi-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">♙</span>
+                <div>
+                  <h2 id="sobre-mi-titulo">Sobre mí</h2>
+                  <p class="panel-subtitle">Lo que me motiva y cómo trabajo</p>
+                </div>
+              </div>
+              <p class="about-text">Soy estudiante de <strong>Ingeniería de Software con Inteligencia Artificial</strong>. Disfruto aprender nuevas tecnologías, construir interfaces y comprender cómo funciona una solución desde el diseño hasta el backend. Me considero una persona con <strong>liderazgo, iniciativa y adaptabilidad</strong>; también valoro escuchar otras ideas, organizar tareas y colaborar para alcanzar objetivos comunes.</p>
+              <div class="quick-stats">
+                <div class="stat-box"><span class="stat-number">22</span><span class="stat-label">Años de edad</span></div>
+                <div class="stat-box"><span class="stat-number">V</span><span class="stat-label">Semestre académico</span></div>
+              </div>
+              <div class="small-rule"></div>
+              <h3 style="margin-bottom:11px;color:var(--borgona-oscuro);font:800 11px 'Manrope',sans-serif;">Habilidades blandas</h3>
+              <div class="tag-cloud">
+                <span class="soft-tag">Liderazgo</span>
+                <span class="soft-tag">Trabajo en equipo</span>
+                <span class="soft-tag">Adaptabilidad</span>
+                <span class="soft-tag">Comunicación</span>
+                <span class="soft-tag">Organización</span>
+                <span class="soft-tag">Resolución de problemas</span>
+                <span class="soft-tag">Aprendizaje continuo</span>
+              </div>
+            </section>
+
+            <section class="panel" id="habilidades" aria-labelledby="habilidades-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">⌘</span>
+                <div>
+                  <h2 id="habilidades-titulo">Mis habilidades</h2>
+                  <p class="panel-subtitle">Tecnologías y áreas en desarrollo</p>
+                </div>
+              </div>
+              <div class="skill-list">
+                <div><div class="skill-top"><span class="skill-name">HTML y CSS</span><span class="skill-type">Interfaz web</span></div><div class="bar-track"><div class="skill-fill" style="width:82%"></div></div></div>
+                <div><div class="skill-top"><span class="skill-name">JavaScript</span><span class="skill-type">Programación</span></div><div class="bar-track"><div class="skill-fill" style="width:65%"></div></div></div>
+                <div><div class="skill-top"><span class="skill-name">Diseño responsive y UX/UI</span><span class="skill-type">Diseño web</span></div><div class="bar-track"><div class="skill-fill" style="width:75%"></div></div></div>
+                <div><div class="skill-top"><span class="skill-name">Backend y API</span><span class="skill-type">En práctica</span></div><div class="bar-track"><div class="skill-fill" style="width:58%"></div></div></div>
+                <div><div class="skill-top"><span class="skill-name">Git y GitHub</span><span class="skill-type">Control de versiones</span></div><div class="bar-track"><div class="skill-fill" style="width:55%"></div></div></div>
+                <div><div class="skill-top"><span class="skill-name">Inteligencia artificial</span><span class="skill-type">Área de interés</span></div><div class="bar-track"><div class="skill-fill" style="width:48%"></div></div></div>
+              </div>
+              <p class="skill-note">Los indicadores son referenciales y editables: ajústalos para que representen tu dominio real de cada tecnología.</p>
+            </section>
+
+            <section class="panel" aria-labelledby="idiomas-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">文</span>
+                <div>
+                  <h2 id="idiomas-titulo">Idiomas</h2>
+                  <p class="panel-subtitle">Mi nivel actual de aprendizaje</p>
+                </div>
+              </div>
+              <div class="language-list">
+                <div><div class="language-top"><span>Portugués</span><span class="language-level">Intermedio</span></div><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div></div>
+                <div><div class="language-top"><span>Inglés</span><span class="language-level">Básico</span></div><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div></div>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="intereses-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">♡</span>
+                <div>
+                  <h2 id="intereses-titulo">Mis intereses</h2>
+                  <p class="panel-subtitle">Áreas que me inspiran</p>
+                </div>
+              </div>
+              <div class="interests-grid">
+                <div class="interest-item"><span class="interest-icon" aria-hidden="true">⌘</span><span>Desarrollo web</span></div>
+                <div class="interest-item"><span class="interest-icon" aria-hidden="true">▣</span><span>Diseño de interfaces</span></div>
+                <div class="interest-item"><span class="interest-icon" aria-hidden="true">◉</span><span>Inteligencia artificial</span></div>
+                <div class="interest-item"><span class="interest-icon" aria-hidden="true">♧</span><span>Aprendizaje continuo</span></div>
+              </div>
+            </section>
+          </div>
+
+          <!-- COLUMNA DERECHA: proyectos ampliables y contacto. -->
+          <div class="column column-projects">
+            <section class="panel" id="proyectos" aria-labelledby="proyectos-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">▣</span>
+                <div>
+                  <h2 id="proyectos-titulo">Proyectos destacados</h2>
+                  <p class="panel-subtitle">Selecciona un proyecto para ver más información</p>
+                </div>
+              </div>
+              <div class="project-list">
+                <details class="project-card" open>
+                  <summary>
+                    <div class="project-image-wrap">
+                      <!-- IMAGEN DEL PROYECTO 1: reemplaza la ruta por una captura real. -->
+                      <img class="project-image" src="../image/proyecto-goothost.png" alt="Vista previa del proyecto Goothost" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+                      <div class="project-image-placeholder" hidden>GH</div>
+                    </div>
+                    <div class="project-content">
+                      <span class="project-kicker">Desarrollo web · Full stack</span>
+                      <div class="project-title-row"><h3 class="project-title">Goothost · Panel administrador</h3><span class="project-toggle" aria-hidden="true">＋</span></div>
+                      <p class="project-short">Interfaz y backend para gestionar funciones del modo administrador.</p>
+                    </div>
+                  </summary>
+                  <div class="project-extra">
+                    <p>Proyecto reciente en el que participo desarrollando tanto la <strong>interfaz como la lógica del backend</strong> para el panel de administración. El objetivo es trabajar con funcionalidades reales y una estructura organizada.</p>
+                    <div class="project-tags"><span>Frontend</span><span>Backend</span><span>Administración</span><span>Trabajo en equipo</span></div>
+                  </div>
+                </details>
+
+                <details class="project-card">
+                  <summary>
+                    <div class="project-image-wrap">
+                      <!-- IMAGEN DEL PROYECTO 2: reemplaza la ruta por una captura real. -->
+                      <img class="project-image" src="../image/proyecto-gootwork.png" alt="Vista previa de un proyecto de GootWork" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+                      <div class="project-image-placeholder" hidden>GW</div>
+                    </div>
+                    <div class="project-content">
+                      <span class="project-kicker">Colaboración tecnológica</span>
+                      <div class="project-title-row"><h3 class="project-title">Proyectos con GootWork</h3><span class="project-toggle" aria-hidden="true">＋</span></div>
+                      <p class="project-short">Participación en iniciativas de desarrollo y mejora de experiencias digitales.</p>
+                    </div>
+                  </summary>
+                  <div class="project-extra">
+                    <p>Formo parte de proyectos tecnológicos colaborativos, aportando al desarrollo de interfaces, la implementación de funcionalidades y la coordinación de tareas para avanzar hacia una solución completa.</p>
+                    <div class="project-tags"><span>Colaboración</span><span>Interfaces</span><span>Desarrollo</span></div>
+                  </div>
+                </details>
+
+                <details class="project-card">
+                  <summary>
+                    <div class="project-image-wrap">
+                      <!-- IMAGEN DEL PROYECTO 3: cambia esta ruta por una captura de tu proyecto. -->
+                      <img class="project-image" src="../image/proyecto-portafolio.png" alt="Vista previa del portafolio web" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+                      <div class="project-image-placeholder" hidden>WEB</div>
+                    </div>
+                    <div class="project-content">
+                      <span class="project-kicker">Proyecto personal</span>
+                      <div class="project-title-row"><h3 class="project-title">Portafolio personal</h3><span class="project-toggle" aria-hidden="true">＋</span></div>
+                      <p class="project-short">Espacio para presentar mi perfil, competencias, trayectoria y trabajos.</p>
+                    </div>
+                  </summary>
+                  <div class="project-extra">
+                    <p>Una página adaptable para centralizar información académica y profesional, mostrar proyectos destacados y facilitar el contacto. Su diseño utiliza una estructura de panel con navegación por secciones.</p>
+                    <div class="project-tags"><span>HTML</span><span>CSS</span><span>Responsive</span><span>UX/UI</span></div>
+                  </div>
+                </details>
+              </div>
+              <p class="project-hint">Consejo: pulsa el encabezado de una tarjeta para abrir o cerrar su descripción.</p>
+            </section>
+
+            <section class="panel" id="contacto" aria-labelledby="contacto-titulo">
+              <div class="panel-heading">
+                <span class="panel-icon" aria-hidden="true">✉</span>
+                <div>
+                  <h2 id="contacto-titulo">Hablemos</h2>
+                  <p class="panel-subtitle">Disponible para conectar y compartir ideas</p>
+                </div>
+              </div>
+              <p class="about-text" style="margin-bottom:14px;">Estoy abierta a aprender de nuevas experiencias, colaborar en equipo y participar en proyectos que me permitan seguir creciendo.</p>
+              <div class="contact-grid">
+                <a class="contact-action" href="https://wa.me/51921893658" target="_blank" rel="noopener noreferrer">
+                  <span class="contact-action-icon" aria-hidden="true">◉</span><span><small>WhatsApp</small><strong>+51 921 893 658</strong></span>
+                </a>
+                <a class="contact-action" href="mailto:cnatorres@ejemplo.com">
+                  <span class="contact-action-icon" aria-hidden="true">✉</span><span><small>Correo electrónico</small><strong>faraespejoconcha@gmail.com</strong></span>
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <footer>
+          <div><div class="footer-line"></div><p><strong>Fara Cristina Espejo Concha</strong></p><p>Portafolio académico y profesional · 2026</p></div>
+          <p>Diseñado con dedicación y aprendizaje continuo.</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Resalta en el menú la sección que se está visualizando.
+    const enlacesMenu = document.querySelectorAll('.nav-link');
+    const secciones = [...enlacesMenu]
+      .map(enlace => document.querySelector(enlace.getAttribute('href')))
+      .filter(Boolean);
+
+    if ('IntersectionObserver' in window) {
+      const observador = new IntersectionObserver((entradas) => {
+        entradas.forEach((entrada) => {
+          if (!entrada.isIntersecting) return;
+          enlacesMenu.forEach((enlace) => {
+            const coincide = enlace.getAttribute('href') === `#${entrada.target.id}`;
+            enlace.classList.toggle('activo', coincide);
+          });
+        });
+      }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+      secciones.forEach(seccion => observador.observe(seccion));
+    }
+
+    // El enlace Inicio también funciona si se hace clic desde cualquier sección.
+    enlacesMenu.forEach((enlace) => {
+      enlace.addEventListener('click', () => {
+        if (enlace.getAttribute('href') === '#inicio') {
+          enlacesMenu.forEach(item => item.classList.remove('activo'));
+          enlace.classList.add('activo');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
